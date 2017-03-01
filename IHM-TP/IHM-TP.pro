@@ -25,9 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    simulation.cpp
+    simulation.cpp \
+    blackbox.cpp
 
 HEADERS  += mainwindow.h \
-    simulation.h
+    simulation.h \
+    blackbox.h
 
 FORMS    += mainwindow.ui
