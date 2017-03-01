@@ -1,3 +1,6 @@
+//HANSER Florian
+//BAUER Guillaume
+
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
@@ -12,6 +15,15 @@ public:
 signals:
 
 public slots:
+    void emergencyStop(void);
+    void endEmergencyStop(void);
+    void openValve(int);
+    void closeValve(int);
+    void openGate(int);
+    void closeGate(int);
+    void stopGate(int);
+    void setRedLight(int);
+    void setGreenLight(void);
 };
 
 #endif // SIMULATION_H
