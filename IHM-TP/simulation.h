@@ -23,7 +23,7 @@ public slots:
     void closeGate(int);
     void stopGate(int);
     void setRedLight(int);
-    void setGreenLight(void);
+    void setGreenLight(int);
 };
 
 #endif // SIMULATION_H
