@@ -28,6 +28,7 @@ SOURCES += main.cpp\
     simulation.cpp
 
 HEADERS  += mainwindow.h \
-    simulation.h
+    simulation.h \
+    enums.h
 
 FORMS    += mainwindow.ui
