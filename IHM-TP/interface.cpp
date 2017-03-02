@@ -15,3 +15,7 @@ Interface::~Interface()
 {
     delete ui;
 }
+
+Ui::Interface * Interface::getUi(){
+    return ui;
+}

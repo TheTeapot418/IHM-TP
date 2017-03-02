@@ -18,9 +18,11 @@ class Interface : public QMainWindow
 public:
     explicit Interface(QWidget *parent = 0);
     ~Interface();
+    Ui::Interface *getUi();
 
 private:
     Ui::Interface *ui;
+
 };
 
 #endif // INTERFACE_H
