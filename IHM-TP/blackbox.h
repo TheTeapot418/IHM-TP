@@ -38,7 +38,10 @@ public slots:
     //from simulation
     void valveState(Side,State);
     void gateState(Side,State,int); //int pour la progression
+    //lightState est inutile. Il est précisé dans le sujet que l'interface ne connait pas l'état des feux
     void lightState(Side,State);
+    //En effet, inutile. Il n'y a pas de capteur de niveau d'eau
+    //L'interface doit déduire le niveau de l'eau d'après l'état des vannes
     void waterState(); //je ne sais pas si c'est utile xD
 
     //from interface
