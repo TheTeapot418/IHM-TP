@@ -24,14 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     simulation.cpp \
-    blackbox.cpp
+    blackbox.cpp \
+    interface.cpp
 
-HEADERS  += mainwindow.h \
-    simulation.h \
+HEADERS  += simulation.h \
     blackbox.h \
-    enums.h
+    enums.h \
+    interface.h
     enums.h
 
-FORMS    += mainwindow.ui
+FORMS    += interface.ui

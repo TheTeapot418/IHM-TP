@@ -1,7 +1,7 @@
 //HANSER Florian
 //BAUER Guillaume
 
-#include "mainwindow.h"
+#include "interface.h"
 #include "blackbox.h"
 #include "simulation.h"
 #include <QApplication>
@@ -9,9 +9,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    Interface i;
     BlackBox bb;
-    w.show();
+    i.show();
 
     return a.exec();
 }
