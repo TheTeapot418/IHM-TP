@@ -5,6 +5,7 @@
 #define SIMULATION_H
 
 #include <QObject>
+#include "enums.h"
 
 class Simulation : public QObject
 {
@@ -15,15 +16,16 @@ public:
 signals:
 
 public slots:
-    void emergencyStop(void);
-    void endEmergencyStop(void);
-    void openValve(int);
-    void closeValve(int);
-    void openGate(int);
-    void closeGate(int);
-    void stopGate(int);
-    void setRedLight(int);
-    void setGreenLight(void);
+    // j'ai changé les int en Side mtn qu'on a ENUM.H
+    void emergencyStop();
+    void endEmergencyStop();
+    void openValve(Side);
+    void closeValve(Side);
+    void openGate(Side);
+    void closeGate(Side);
+    void stopGate(Side);
+    void setRedLight(Side);
+    void setGreenLight(Side);
 };
 
 #endif // SIMULATION_H

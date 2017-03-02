@@ -1,0 +1,5 @@
+Mockups/*
+Docs/*
+*.autosave
+build-*/*
+*.user*

@@ -30,6 +30,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     simulation.h \
-    blackbox.h
+    blackbox.h \
+    enums.h
+    enums.h
 
 FORMS    += mainwindow.ui
