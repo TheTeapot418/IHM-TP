@@ -1,3 +1,6 @@
+//HANSER Florian
+//BAUER Guillaume
+
 #include "interface.h"
 #include "ui_interface.h"
 

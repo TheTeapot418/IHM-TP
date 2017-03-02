@@ -1,3 +1,6 @@
+#HANSER Florian
+#BAUER Gauillaume
+
 #-------------------------------------------------
 #
 # Project created by QtCreator 2017-03-01T18:03:40
@@ -24,14 +27,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-    simulation.cpp \
     blackbox.cpp \
-    interface.cpp
+    interface.cpp \
+    simulation.cpp
 
-HEADERS  += simulation.h \
-    blackbox.h \
+HEADERS  += blackbox.h \
     enums.h \
-    interface.h
+    interface.h \
+    simulation.h
     enums.h
 
-FORMS    += interface.ui
+FORMS    += interface.ui \
+    simulation.ui

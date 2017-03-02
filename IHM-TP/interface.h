@@ -1,7 +1,11 @@
+//HANSER Florian
+//BAUER Guillaume
+
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
 #include <QMainWindow>
+#include "enums.h"
 
 namespace Ui {
 class Interface;
