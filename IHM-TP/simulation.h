@@ -20,9 +20,10 @@ public:
     ~Simulation();
 
 signals:
+    void valveState(Side,State);
+    void gateState(Side,State,int);
 
 public slots:
-    // j'ai changé les int en Side mtn qu'on a ENUM.H
     void emergencyStop();
     void endEmergencyStop();
     void openValve(Side);
