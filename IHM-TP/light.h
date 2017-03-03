@@ -22,7 +22,8 @@ private:
         GREEN
     };
 
-    Color color;
+    Color color = RED;
+    bool emergency = false;
 };
 
 #endif // LIGHT_H
