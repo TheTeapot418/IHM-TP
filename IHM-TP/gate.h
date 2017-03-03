@@ -34,7 +34,9 @@ private:
     bool threadRunning = false;
 
     void threadFunc(State);
+    bool shouldDie = false;
     std::mutex mtx;
+    std::mutex mtx2;
 };
 
 #endif // GATE_H

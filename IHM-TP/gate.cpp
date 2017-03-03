@@ -28,7 +28,8 @@ void Gate::open(void) {
     std::lock_guard<std::mutex> lock(mtx);
     if (threadRunning) return;
     lock.~lock_guard();
-    thread = std::thread(threadFunc, OPEN);
+    shouldDie = false;
+    thread = std::thread(&Gate::threadFunc, this, OPEN);
 }
 
 void Gate::close(void) {
@@ -36,11 +37,14 @@ void Gate::close(void) {
     std::lock_guard<std::mutex> lock(mtx);
     if (threadRunning) return;
     lock.~lock_guard();
-    thread = std::thread(threadFunc, CLOSED);
+    shouldDie = false;
+    thread = std::thread(&Gate::threadFunc, this, CLOSED);
 }
 
 void Gate::stop(void) {
-    std::terminate(thread);
+    mtx2.lock();
+    shouldDie = true;
+    mtx2.unlock();
     state = ALERT;
 }
 
@@ -60,10 +64,16 @@ void Gate::threadFunc(State target) {
     if (target == OPEN) {
         for(; preciseState <= 100; preciseState += 10) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::lock_guard<std::mutex> lock(mtx2);
+            if (shouldDie) return;
+            mtx2.unlock();
         }
     } else if (target == CLOSED) {
         for(; preciseState >= 0; preciseState -= 10) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::lock_guard<std::mutex> lock(mtx2);
+            if (shouldDie) return;
+            mtx2.unlock();
         }
     }
 
