@@ -5,6 +5,13 @@
 
 Simulation::Simulation()
 {
+    components.push_back(&usValve);
+    components.push_back(&dsValve);
+    components.push_back(&usGate);
+    components.push_back(&dsGate);
+    components.push_back(&usLight);
+    components.push_back(&dsLight);
+
     window.show();
 }
 

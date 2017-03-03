@@ -5,8 +5,13 @@
 #define SIMULATION_H
 
 #include <QObject>
+#include <vector>
 #include "enums.h"
 #include "simulationwindow.h"
+#include "sluicecomponent.h"
+#include "valve.h"
+#include "gate.h"
+#include "light.h"
 
 
 class Simulation : public QObject
@@ -15,6 +20,15 @@ class Simulation : public QObject
 
 public:
     explicit Simulation();
+
+    Valve usValve;
+    Valve dsValve;
+    Gate usGate;
+    Gate dsGate;
+    Light usLight;
+    Light dsLight;
+
+    std::vector<SluiceComponent*> components;
 
 private:
     SimulationWindow window;
