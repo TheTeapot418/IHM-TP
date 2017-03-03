@@ -6,6 +6,7 @@
 
 #include <QObject>
 #include "enums.h"
+#include "simulationwindow.h"
 
 
 class Simulation : public QObject
@@ -14,6 +15,9 @@ class Simulation : public QObject
 
 public:
     explicit Simulation();
+
+private:
+    SimulationWindow window;
 
 signals:
     void valveState(Side,State);

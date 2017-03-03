@@ -5,7 +5,7 @@
 
 Simulation::Simulation()
 {
-
+    window.show();
 }
 
 void Simulation::emergencyStop() {

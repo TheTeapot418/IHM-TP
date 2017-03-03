@@ -1,9 +1,9 @@
 #ifndef SIMULATIONWINDOW_H
 #define SIMULATIONWINDOW_H
 
-#include <QDialog>
+#include <QWidget>
 
-class SimulationWindow : public QDialog
+class SimulationWindow : public QWidget
 {
 public:
     SimulationWindow();
