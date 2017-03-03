@@ -2,6 +2,8 @@
 #define GATE_H
 
 #include <QPaintEvent>
+#include <thread>
+#include <mutex>
 
 #include "sluicecomponent.h"
 #include "enums.h"
@@ -23,8 +25,16 @@ public:
     int getPreciseState(void);
 
 private:
-    State state;
+    State state = CLOSED;
     int preciseState = 0;
+
+    bool emergency = false;
+
+    std::thread thread;
+    bool threadRunning = false;
+
+    void threadFunc(State);
+    std::mutex mtx;
 };
 
 #endif // GATE_H

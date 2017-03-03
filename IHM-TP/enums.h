@@ -14,7 +14,8 @@ typedef enum {
     OPENING,
     CLOSING,
     CLOSED,
-    ALERT
+    ALERT,
+    STOPPED
 } State;
 
 #endif // ENUMS_H
