@@ -37,5 +37,4 @@ HEADERS  += blackbox.h \
     simulation.h
     enums.h
 
-FORMS    += interface.ui \
-    simulation.ui
+FORMS    += interface.ui
