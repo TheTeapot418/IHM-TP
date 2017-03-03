@@ -19,7 +19,8 @@ public:
     State getState(void);
 
 private:
-    State state;
+    State state = CLOSED;
+    bool emergency = false;
 };
 
 #endif // VALVE_H
