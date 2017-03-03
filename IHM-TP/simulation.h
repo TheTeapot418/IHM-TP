@@ -4,14 +4,11 @@
 #ifndef SIMULATION_H
 #define SIMULATION_H
 
-#include <QMainWindow>
+#include <QObject>
 #include "enums.h"
 
-namespace Ui {
-class Simulation;
-}
 
-class Simulation : public QMainWindow
+class Simulation : public QObject
 {
     Q_OBJECT
 
@@ -34,8 +31,6 @@ public slots:
     void setRedLight(Side);
     void setGreenLight(Side);
 
-private:
-    Ui::Simulation *ui;
 };
 
 #endif // SIMULATION_H
