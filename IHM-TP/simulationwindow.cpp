@@ -7,3 +7,7 @@ SimulationWindow::SimulationWindow() : QWidget(0)
     setWindowTitle("Simulation");
     move(50, 50);
 }
+
+SimulationWindow::paintEvent(QPaintEvent *) {
+
+}
