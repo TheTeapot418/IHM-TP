@@ -29,12 +29,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
     blackbox.cpp \
     interface.cpp \
-    simulation.cpp
+    simulation.cpp \
+    simulationwindow.cpp
 
 HEADERS  += blackbox.h \
     enums.h \
     interface.h \
-    simulation.h
+    simulation.h \
+    simulationwindow.h
     enums.h
 
 FORMS    += interface.ui
