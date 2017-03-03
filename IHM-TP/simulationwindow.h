@@ -9,7 +9,7 @@ class SimulationWindow : public QWidget
 public:
     SimulationWindow();
 
-    paintEvent(QPaintEvent*);
+    void paintEvent(QPaintEvent*);
 };
 
 #endif // SIMULATIONWINDOW_H

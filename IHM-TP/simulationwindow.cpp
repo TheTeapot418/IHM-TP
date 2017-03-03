@@ -8,6 +8,6 @@ SimulationWindow::SimulationWindow() : QWidget(0)
     move(50, 50);
 }
 
-SimulationWindow::paintEvent(QPaintEvent *) {
+void SimulationWindow::paintEvent(QPaintEvent *) {
 
 }

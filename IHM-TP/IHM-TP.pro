@@ -36,7 +36,8 @@ HEADERS  += blackbox.h \
     enums.h \
     interface.h \
     simulation.h \
-    simulationwindow.h
+    simulationwindow.h \
+    sluicecomponent.h
     enums.h
 
 FORMS    += interface.ui
