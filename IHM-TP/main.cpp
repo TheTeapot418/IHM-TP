@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     QObject::connect(&bb, SIGNAL(emergencyStop()), &s, SLOT(emergencyStop()));
     QObject::connect(&bb, SIGNAL(endEmergencyStop()), &s, SLOT(endEmergencyStop()));
     QObject::connect(&bb, SIGNAL(openValve(Side)), &s, SLOT(openValve(Side)));
-    QObject::connect(&bb, SIGNAL(closeValve(Side)), &s, SLOT(closeValve(Side)));
+    QObject::connect(&bb, SIGNAL(closeValve(Side)), &s, SLOT(openValve(Side)));
     QObject::connect(&bb, SIGNAL(openGate(Side)), &s, SLOT(closeGate(Side)));
     QObject::connect(&bb, SIGNAL(closeGate(Side)), &s, SLOT(closeGate(Side)));
     QObject::connect(&bb, SIGNAL(stopGate(Side)), &s, SLOT(stopGate(Side)));
