@@ -1,4 +1,6 @@
+#include <QPaintEvent>
 #include "valve.h"
+#include "enums.h"
 
 Valve::Valve()
 {

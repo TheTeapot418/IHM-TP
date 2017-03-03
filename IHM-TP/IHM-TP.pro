@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     simulation.cpp \
     simulationwindow.cpp \
     valve.cpp \
-    sluicecomponent.cpp
+    sluicecomponent.cpp \
+    gate.cpp
 
 HEADERS  += blackbox.h \
     enums.h \
@@ -40,7 +41,8 @@ HEADERS  += blackbox.h \
     simulation.h \
     simulationwindow.h \
     sluicecomponent.h \
-    valve.h
+    valve.h \
+    gate.h
     enums.h
 
 FORMS    += interface.ui
