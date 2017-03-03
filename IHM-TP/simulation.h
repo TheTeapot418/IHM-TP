@@ -13,8 +13,7 @@ class Simulation : public QObject
     Q_OBJECT
 
 public:
-    explicit Simulation(QWidget *parent = 0);
-    ~Simulation();
+    explicit Simulation();
 
 signals:
     void valveState(Side,State);
