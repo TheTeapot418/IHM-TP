@@ -1,9 +1,9 @@
 #ifndef SLUICECOMPONENT_H
 #define SLUICECOMPONENT_H
 
-#include <QPaintEvent>
+#include "paintable.h"
 
-class SluiceComponent
+class SluiceComponent : public Paintable
 {
 public:
     virtual void emergencyStop(void) = 0;

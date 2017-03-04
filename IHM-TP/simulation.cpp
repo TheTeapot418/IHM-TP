@@ -6,6 +6,7 @@
 #include "enums.h"
 #include "simulationwindow.h"
 #include "sluicecomponent.h"
+#include "paintable.h"
 #include "valve.h"
 #include "gate.h"
 #include "light.h"
@@ -22,7 +23,14 @@ Simulation::Simulation()
     connect(&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
     connect(&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
-    window.show();
+    std::vector<Paintable*> p(components.begin(), components.end());
+
+    window = new SimulationWindow(p);
+    window->show();
+}
+
+Simulation::~Simulation() {
+    delete window;
 }
 
 void Simulation::emergencyStop() {

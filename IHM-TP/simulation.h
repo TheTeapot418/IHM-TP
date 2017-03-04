@@ -20,9 +20,10 @@ class Simulation : public QObject
 
 public:
     explicit Simulation();
+    ~Simulation();
 
 private:
-    SimulationWindow window;
+    SimulationWindow* window;
 
     Valve usValve;
     Valve dsValve;

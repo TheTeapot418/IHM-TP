@@ -3,9 +3,8 @@
 
 #include <QPaintEvent>
 #include "sluicecomponent.h"
-#include "paintable.h"
 
-class Light : public SluiceComponent, public Paintable
+class Light : public SluiceComponent
 {
 public:
     Light();

@@ -6,10 +6,9 @@
 #include <mutex>
 
 #include "sluicecomponent.h"
-#include "paintable.h"
 #include "enums.h"
 
-class Gate : public QObject, public SluiceComponent, public Paintable
+class Gate : public QObject, public SluiceComponent
 {
     Q_OBJECT
 
