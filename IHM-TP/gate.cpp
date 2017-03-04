@@ -63,20 +63,29 @@ void Gate::threadFunc(State target) {
     mtx.unlock();
 
     if (target == OPEN) {
-        emit gateStateInternal(state, preciseState);
         for(; preciseState <= 100; preciseState += 10) {
+            emit gateStateInternal(state, preciseState);
             std::this_thread::sleep_for(std::chrono::seconds(1));
             std::lock_guard<std::mutex> lock(mtx2);
-            if (shouldDie) return;
-            mtx2.unlock();
+            mtx2.lock();
+            if (shouldDie) {
+                mtx.lock();
+                threadRunning = false;
+                mtx.unlock();
+                return;
+            }
         }
     } else if (target == CLOSED) {
-        emit gateStateInternal(state, preciseState);
         for(; preciseState >= 0; preciseState -= 10) {
+            emit gateStateInternal(state, preciseState);
             std::this_thread::sleep_for(std::chrono::seconds(1));
             std::lock_guard<std::mutex> lock(mtx2);
-            if (shouldDie) return;
-            mtx2.unlock();
+            if (shouldDie) {
+                mtx.lock();
+                threadRunning = false;
+                mtx.unlock();
+                return;
+            }
         }
     }
 
