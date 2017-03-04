@@ -19,6 +19,9 @@ Simulation::Simulation()
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
+    connect((Gate*)&usGate, SIGNAL(gateStateInternal(Side,State,int)), this, SLOT(gateStateInternal(Side,State,int)));
+    connect((Gate*)&dsGate, SIGNAL(gateStateInternal(Side,State,int)), this, SLOT(gateStateInternal(Side,State,int)));
+
     window.show();
 }
 
@@ -92,4 +95,8 @@ void Simulation::setGreenLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToGreen();
     }
+}
+
+void Simulation::gateStateInternal(Side side, State state, int ps) {
+
 }

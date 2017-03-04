@@ -47,6 +47,8 @@ public slots:
     void stopGate(Side);
     void setRedLight(Side);
     void setGreenLight(Side);
+
+    void gateStateInternal(Side, State, int);
 };
 
 #endif // SIMULATION_H

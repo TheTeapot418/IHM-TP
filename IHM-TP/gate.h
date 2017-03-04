@@ -8,8 +8,13 @@
 #include "sluicecomponent.h"
 #include "enums.h"
 
-class Gate : public SluiceComponent
+class Gate : public QObject, public SluiceComponent
 {
+    Q_OBJECT
+
+signals:
+    void gateStateInternal(Side, State, int);
+
 public:
     Gate();
 
