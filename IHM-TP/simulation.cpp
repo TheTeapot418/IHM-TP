@@ -75,9 +75,21 @@ void Simulation::stopGate(Side g) {
 }
 
 void Simulation::setRedLight(Side l) {
-
+    switch (l) {
+    case UPSTREAM:
+        usLight.setToRed();
+        break;
+    case DOWNSTREAM:
+        dsLight.setToRed();
+    }
 }
 
 void Simulation::setGreenLight(Side l) {
-
+    switch (l) {
+    case UPSTREAM:
+        usLight.setToGreen();
+        break;
+    case DOWNSTREAM:
+        dsLight.setToGreen();
+    }
 }
