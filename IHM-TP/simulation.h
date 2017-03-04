@@ -21,6 +21,9 @@ class Simulation : public QObject
 public:
     explicit Simulation();
 
+private:
+    SimulationWindow window;
+
     Valve usValve;
     Valve dsValve;
     Gate usGate;
@@ -29,9 +32,6 @@ public:
     Light dsLight;
 
     std::vector<SluiceComponent*> components;
-
-private:
-    SimulationWindow window;
 
 signals:
     void valveState(Side,State);
@@ -47,7 +47,6 @@ public slots:
     void stopGate(Side);
     void setRedLight(Side);
     void setGreenLight(Side);
-
 };
 
 #endif // SIMULATION_H
