@@ -98,9 +98,9 @@ void Simulation::setGreenLight(Side l) {
 }
 
 void Simulation::usGateStateInternal(State state, int ps) {
-
+    emit gateState(UPSTREAM, state, ps);
 }
 
 void Simulation::dsGateStateInternal(State state, int ps) {
-
+    emit gateState(DOWNSTREAM, state, ps);
 }
