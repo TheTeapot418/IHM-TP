@@ -1,7 +1,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 
-#include <QPaintEvent>
+#include <QPainter>
 #include "sluicecomponent.h"
 
 class Light : public SluiceComponent
@@ -11,7 +11,7 @@ public:
 
     void emergencyStop(void);
     void endEmergencyStop(void);
-    void paint(QPaintEvent *);
+    void paint(QPainter*);
 
     void setToRed(void);
     void setToGreen(void);

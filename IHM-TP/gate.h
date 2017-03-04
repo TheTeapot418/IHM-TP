@@ -1,7 +1,7 @@
 #ifndef GATE_H
 #define GATE_H
 
-#include <QPaintEvent>
+#include <QPainter>
 #include <thread>
 #include <mutex>
 
@@ -20,7 +20,7 @@ public:
 
     void emergencyStop(void);
     void endEmergencyStop(void);
-    void paint(QPaintEvent*);
+    void paint(QPainter*);
 
     void open(void);
     void close(void);

@@ -1,4 +1,4 @@
-#include <QPaintEvent>
+#include <QPainter>
 #include <thread>
 #include <chrono>
 #include "gate.h"
@@ -23,7 +23,7 @@ void Gate::endEmergencyStop() {
     state = STOPPED;
 }
 
-void Gate::paint(QPaintEvent* e) {
+void Gate::paint(QPainter* p) {
 
 }
 

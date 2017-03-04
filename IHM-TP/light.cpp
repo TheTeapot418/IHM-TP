@@ -1,4 +1,4 @@
-#include <QPaintEvent>
+#include <QPainter>
 #include "light.h"
 
 Light::Light()
@@ -17,7 +17,7 @@ void Light::endEmergencyStop(void) {
     emergency = false;
 }
 
-void Light::paint(QPaintEvent* e) {
+void Light::paint(QPainter* p) {
 
 }
 

@@ -1,7 +1,7 @@
 #ifndef VALVE_H
 #define VALVE_H
 
-#include <QPaintEvent>
+#include <QPainter>
 #include "sluicecomponent.h"
 #include "enums.h"
 
@@ -11,7 +11,7 @@ public:
     Valve();
     void emergencyStop(void);
     void endEmergencyStop(void);
-    void paint(QPaintEvent *);
+    void paint(QPainter*);
 
     void open(void);
     void close(void);

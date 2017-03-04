@@ -1,4 +1,4 @@
-#include <QPaintEvent>
+#include <QPainter>
 #include "valve.h"
 #include "enums.h"
 
@@ -19,7 +19,7 @@ void Valve::endEmergencyStop(void) {
     emergency = false;
 }
 
-void Valve::paint(QPaintEvent* e) {
+void Valve::paint(QPainter* p) {
 
 }
 
