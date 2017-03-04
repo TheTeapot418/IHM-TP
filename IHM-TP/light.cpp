@@ -7,11 +7,13 @@ Light::Light()
 }
 
 void Light::emergencyStop(void) {
+    if (emergency) return;
     color = RED;
     emergency = true;
 }
 
 void Light::endEmergencyStop(void) {
+    if (!emergency) return;
     emergency = false;
 }
 

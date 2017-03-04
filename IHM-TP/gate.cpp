@@ -10,11 +10,15 @@ Gate::Gate()
 }
 
 void Gate::emergencyStop() {
+    if (emergency) return;
     stop();
     emergency = true;
+    state = ALERT;
+    emit gateStateInternal(state, preciseState);
 }
 
 void Gate::endEmergencyStop() {
+    if (!emergency) return;
     emergency = false;
     state = STOPPED;
 }
@@ -49,7 +53,7 @@ void Gate::stop(void) {
     mtx2.lock();
     shouldDie = true;
     mtx2.unlock();
-    state = ALERT;
+    state = STOPPED;
     emit gateStateInternal(state, preciseState);
 }
 

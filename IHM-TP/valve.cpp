@@ -8,11 +8,14 @@ Valve::Valve()
 }
 
 void Valve::emergencyStop(void) {
-    state = CLOSED;
+    if (emergency) return;
+    state = ALERT;
     emergency = true;
 }
 
 void Valve::endEmergencyStop(void) {
+    if (!emergency) return;
+    state = CLOSED;
     emergency = false;
 }
 

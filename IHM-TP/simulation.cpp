@@ -19,18 +19,22 @@ Simulation::Simulation()
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
-    connect((Gate*)&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
-    connect((Gate*)&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
+    connect(&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
+    connect(&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
     window.show();
 }
 
 void Simulation::emergencyStop() {
-
+    for (SluiceComponent* c : components) {
+        c->emergencyStop();
+    }
 }
 
 void Simulation::endEmergencyStop() {
-
+    for (SluiceComponent* c : components) {
+        c->endEmergencyStop();
+    }
 }
 
 void Simulation::openValve(Side v) {
