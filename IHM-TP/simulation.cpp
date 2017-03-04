@@ -1,7 +1,14 @@
 //HANSER Florian
 //BAUER Guillaume
 
+#include <vector>
 #include "simulation.h"
+#include "enums.h"
+#include "simulationwindow.h"
+#include "sluicecomponent.h"
+#include "valve.h"
+#include "gate.h"
+#include "light.h"
 
 Simulation::Simulation()
 {

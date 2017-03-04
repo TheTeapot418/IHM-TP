@@ -6,9 +6,9 @@
 class SluiceComponent
 {
 public:
-    virtual void emergencyStop(void);
-    virtual void endEmergencyStop(void);
-    virtual void paint(QPaintEvent*);
+    virtual void emergencyStop(void) = 0;
+    virtual void endEmergencyStop(void) = 0;
+    virtual void paint(QPaintEvent*) = 0;
 };
 
 #endif // SLUICECOMPONENT_H

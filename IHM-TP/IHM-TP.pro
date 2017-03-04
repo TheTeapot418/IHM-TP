@@ -32,7 +32,6 @@ SOURCES += main.cpp\
     simulation.cpp \
     simulationwindow.cpp \
     valve.cpp \
-    sluicecomponent.cpp \
     gate.cpp \
     light.cpp
 
