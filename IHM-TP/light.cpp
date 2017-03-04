@@ -1,4 +1,4 @@
-#include <QPaintEvent>
+#include <QPainter>
 #include "light.h"
 
 Light::Light()
@@ -7,15 +7,17 @@ Light::Light()
 }
 
 void Light::emergencyStop(void) {
+    if (emergency) return;
     color = RED;
     emergency = true;
 }
 
 void Light::endEmergencyStop(void) {
+    if (!emergency) return;
     emergency = false;
 }
 
-void Light::paint(QPaintEvent *) {
+void Light::paint(QPainter* p) {
 
 }
 
