@@ -30,6 +30,7 @@ void Gate::open(void) {
     if (threadRunning) return;
     mtx.unlock();
     shouldDie = false;
+    state = OPENING;
     thread = std::thread(&Gate::threadFunc, this, OPEN);
 }
 
@@ -40,6 +41,7 @@ void Gate::close(void) {
     if (threadRunning) return;
     mtx.unlock();
     shouldDie = false;
+    state = CLOSING;
     thread = std::thread(&Gate::threadFunc, this, CLOSED);
 }
 
