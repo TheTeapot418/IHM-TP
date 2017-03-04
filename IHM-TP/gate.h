@@ -13,7 +13,7 @@ class Gate : public QObject, public SluiceComponent
     Q_OBJECT
 
 signals:
-    void gateStateInternal(Side, State, int);
+    void gateStateInternal(State, int);
 
 public:
     Gate();

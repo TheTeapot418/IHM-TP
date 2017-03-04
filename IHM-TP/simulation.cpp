@@ -19,8 +19,8 @@ Simulation::Simulation()
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
-    connect((Gate*)&usGate, SIGNAL(gateStateInternal(Side,State,int)), this, SLOT(gateStateInternal(Side,State,int)));
-    connect((Gate*)&dsGate, SIGNAL(gateStateInternal(Side,State,int)), this, SLOT(gateStateInternal(Side,State,int)));
+    connect((Gate*)&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
+    connect((Gate*)&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
     window.show();
 }
@@ -97,6 +97,10 @@ void Simulation::setGreenLight(Side l) {
     }
 }
 
-void Simulation::gateStateInternal(Side side, State state, int ps) {
+void Simulation::usGateStateInternal(State state, int ps) {
+
+}
+
+void Simulation::dsGateStateInternal(State state, int ps) {
 
 }
