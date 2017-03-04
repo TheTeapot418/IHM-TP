@@ -17,7 +17,7 @@ void Light::endEmergencyStop(void) {
     emergency = false;
 }
 
-void Light::paint(QPaintEvent *) {
+void Light::paint(QPaintEvent* e) {
 
 }
 

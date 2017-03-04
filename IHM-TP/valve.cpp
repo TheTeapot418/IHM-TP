@@ -19,7 +19,7 @@ void Valve::endEmergencyStop(void) {
     emergency = false;
 }
 
-void Valve::paint(QPaintEvent *) {
+void Valve::paint(QPaintEvent* e) {
 
 }
 

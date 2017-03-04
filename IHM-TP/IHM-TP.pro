@@ -43,7 +43,8 @@ HEADERS  += blackbox.h \
     sluicecomponent.h \
     valve.h \
     gate.h \
-    light.h
+    light.h \
+    paintable.h
     enums.h
 
 FORMS    += interface.ui

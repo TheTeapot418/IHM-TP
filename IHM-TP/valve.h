@@ -3,9 +3,10 @@
 
 #include <QPaintEvent>
 #include "sluicecomponent.h"
+#include "paintable.h"
 #include "enums.h"
 
-class Valve : public SluiceComponent
+class Valve : public SluiceComponent, public Paintable
 {
 public:
     Valve();

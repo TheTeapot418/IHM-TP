@@ -23,7 +23,7 @@ void Gate::endEmergencyStop() {
     state = STOPPED;
 }
 
-void Gate::paint(QPaintEvent *) {
+void Gate::paint(QPaintEvent* e) {
 
 }
 
