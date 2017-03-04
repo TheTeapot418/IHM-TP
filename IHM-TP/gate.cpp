@@ -91,6 +91,14 @@ void Gate::threadFunc(State target) {
 
     state = target;
 
+    if (target == OPEN) {
+        preciseState = 100;
+    } else if (target == CLOSED) {
+        preciseState = 0;
+    }
+
+    emit gateStateInternal(state, preciseState);
+
     mtx.lock();
     threadRunning = false;
     mtx.unlock();
