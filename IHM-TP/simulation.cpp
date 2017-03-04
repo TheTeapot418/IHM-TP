@@ -66,15 +66,33 @@ void Simulation::closeValve(Side v) {
 }
 
 void Simulation::openGate(Side g) {
-
+    switch(g) {
+    case UPSTREAM:
+        usGate.open();
+        break;
+    case DOWNSTREAM:
+        dsGate.open();
+    }
 }
 
 void Simulation::closeGate(Side g) {
-
+    switch(g) {
+    case UPSTREAM:
+        usGate.close();
+        break;
+    case DOWNSTREAM:
+        dsGate.close();
+    }
 }
 
 void Simulation::stopGate(Side g) {
-
+    switch(g) {
+    case UPSTREAM:
+        usGate.stop();
+        break;
+    case DOWNSTREAM:
+        dsGate.stop();
+    }
 }
 
 void Simulation::setRedLight(Side l) {
