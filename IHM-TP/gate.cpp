@@ -46,6 +46,7 @@ void Gate::stop(void) {
     shouldDie = true;
     mtx2.unlock();
     state = ALERT;
+    emit gateStateInternal(state, preciseState);
 }
 
 State Gate::getState(void) {
@@ -62,6 +63,7 @@ void Gate::threadFunc(State target) {
     mtx.unlock();
 
     if (target == OPEN) {
+        emit gateStateInternal(state, preciseState);
         for(; preciseState <= 100; preciseState += 10) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
             std::lock_guard<std::mutex> lock(mtx2);
@@ -69,6 +71,7 @@ void Gate::threadFunc(State target) {
             mtx2.unlock();
         }
     } else if (target == CLOSED) {
+        emit gateStateInternal(state, preciseState);
         for(; preciseState >= 0; preciseState -= 10) {
             std::this_thread::sleep_for(std::chrono::seconds(1));
             std::lock_guard<std::mutex> lock(mtx2);
