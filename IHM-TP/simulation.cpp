@@ -31,11 +31,35 @@ void Simulation::endEmergencyStop() {
 }
 
 void Simulation::openValve(Side v) {
+    State s;
 
+    switch (v) {
+    case UPSTREAM:
+        usValve.open();
+        s = usValve.getState();
+        break;
+    case DOWNSTREAM:
+        dsValve.open();
+        s = dsValve.getState();
+    }
+
+    emit(valveState(v, s));
 }
 
 void Simulation::closeValve(Side v) {
+    State s;
 
+    switch (v) {
+    case UPSTREAM:
+        usValve.close();
+        s = usValve.getState();
+        break;
+    case DOWNSTREAM:
+        dsValve.close();
+        s = dsValve.getState();
+    }
+
+    emit(valveState(v, s));
 }
 
 void Simulation::openGate(Side g) {
