@@ -30,6 +30,7 @@ Simulation::Simulation()
 }
 
 Simulation::~Simulation() {
+    window->~SimulationWindow();
     delete window;
 }
 

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QPaintEvent>
+#include <QCloseEvent>
 #include <vector>
 #include "paintable.h"
 
@@ -11,6 +12,7 @@ class SimulationWindow : public QWidget
 public:
     SimulationWindow();
     SimulationWindow(std::vector<Paintable*>);
+    ~SimulationWindow();
 
     void paintEvent(QPaintEvent*);
 
