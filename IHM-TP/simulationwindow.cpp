@@ -14,7 +14,11 @@ SimulationWindow::SimulationWindow(std::vector<Paintable*> e) : QWidget(0), enti
 void SimulationWindow::paintEvent(QPaintEvent* e) {
     QPainter painter;
     painter.begin(this);
-    painter.fillRect(e->rect(), Qt::red);
+
+    for (Paintable* p : entities) {
+        p->paint(&painter);
+    }
+
     QWidget::paintEvent(e);
     painter.end();
 }
