@@ -2,6 +2,9 @@
 #define VALVE_H
 
 #include <QPainter>
+#include <QPixmap>
+#include <Qstring>
+#include <string>
 #include "sluicecomponent.h"
 #include "enums.h"
 
@@ -9,6 +12,7 @@ class Valve : public SluiceComponent
 {
 public:
     Valve();
+    Valve(QString, QString);
     void emergencyStop(void);
     void endEmergencyStop(void);
     void paint(QPainter*);
@@ -21,6 +25,9 @@ public:
 private:
     State state = CLOSED;
     bool emergency = false;
+
+    QPixmap openImg;
+    QPixmap closedImg;
 };
 
 #endif // VALVE_H
