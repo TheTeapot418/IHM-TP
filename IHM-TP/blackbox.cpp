@@ -7,7 +7,8 @@
 using namespace std;
 
 BlackBox::BlackBox(QObject *parent) : QObject(parent) {
-
+    upGate = downGate = CLOSED;
+    upValve = downValve = OPEN;
 }
 
 
@@ -19,9 +20,11 @@ BlackBox::BlackBox(QObject *parent) : QObject(parent) {
 void BlackBox::valveState(Side v,State s){
     switch(v){
         case UPSTREAM :
+            upValve = s;
             emit upValveUpdate(s);
             break;
         case DOWNSTREAM :
+            downValve = s;
             emit downValveUpdate(s);
             break;
     }
@@ -30,9 +33,11 @@ void BlackBox::valveState(Side v,State s){
 void BlackBox::gateState(Side v,State s,int i){
     switch(v){
         case UPSTREAM :
+            upGate = s;
             emit upGateUpdate(s,i);
             break;
         case DOWNSTREAM :
+            downGate = s;
             emit downGateUpdate(s,i);
             break;
     }
@@ -63,28 +68,35 @@ void BlackBox::exit(){
 
 //manual mode
 void BlackBox::upGateOpen(){
-    emit openGate(UPSTREAM);
+    if(upGate != OPEN && upValve == OPEN && downValve == CLOSED)
+        emit openGate(UPSTREAM);
 }
 
 void BlackBox::upGateClose(){
-    emit closeGate(UPSTREAM);
+    if(upGate != CLOSED)
+        emit closeGate(UPSTREAM);
 }
 
 void BlackBox::upGateStop(){
-    emit stopGate(UPSTREAM);
+    if(upGate == OPENING || upGate == CLOSING)
+        emit stopGate(UPSTREAM);
 }
 
 void BlackBox::upValveOpen(){
-    emit openValve(UPSTREAM);
+    if(upValve == CLOSED)
+        emit openValve(UPSTREAM);
 }
 
 void BlackBox::upValveClose(){
+    if(upValve == OPEN)
     emit closeValve(UPSTREAM);
 }
 
 void BlackBox::upGreenLight(){
-    emit setGreenLight(UPSTREAM);
-    emit upLightUpdate(OPEN);
+    if(upGate == OPEN){
+        emit setGreenLight(UPSTREAM);
+        emit upLightUpdate(OPEN);
+    }
 }
 
 void BlackBox::upRedLight(){
@@ -94,28 +106,35 @@ void BlackBox::upRedLight(){
 
 
 void BlackBox::downGateOpen(){
-    emit openGate(DOWNSTREAM);
+    if(downGate != OPEN && upValve == CLOSED && downValve == OPEN)
+        emit openGate(DOWNSTREAM);
 }
 
 void BlackBox::downGateClose(){
-    emit closeGate(DOWNSTREAM);
+    if(downGate != CLOSED)
+        emit closeGate(DOWNSTREAM);
 }
 
 void BlackBox::downGateStop(){
-    emit stopGate(DOWNSTREAM);
+    if(downGate == OPENING || downGate == CLOSING)
+        emit stopGate(DOWNSTREAM);
 }
 
 void BlackBox::downValveOpen(){
-    emit openValve(DOWNSTREAM);
+    if(downValve == CLOSED)
+        emit openValve(DOWNSTREAM);
 }
 
 void BlackBox::downValveClose(){
-    emit closeValve(DOWNSTREAM);
+    if(downValve == OPEN)
+        emit closeValve(DOWNSTREAM);
 }
 
 void BlackBox::downGreenLight(){
-    emit setGreenLight(DOWNSTREAM);
-    emit downLightUpdate(OPEN);
+    if(downGate == OPEN){
+        emit setGreenLight(DOWNSTREAM);
+        emit downLightUpdate(OPEN);
+    }
 }
 
 void BlackBox::downRedLight(){
