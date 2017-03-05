@@ -42,6 +42,7 @@ void Gate::open(void) {
     shouldDie = false;
     state = OPENING;
     thread = std::thread(&Gate::threadFunc, this, OPEN);
+    thread.detach();
 }
 
 void Gate::close(void) {
@@ -52,6 +53,7 @@ void Gate::close(void) {
     shouldDie = false;
     state = CLOSING;
     thread = std::thread(&Gate::threadFunc, this, CLOSED);
+    thread.detach();
 }
 
 void Gate::stop(void) {
