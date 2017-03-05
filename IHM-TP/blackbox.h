@@ -16,6 +16,7 @@ public:
 
 private:
     Side goingTo;
+    State upGate,downGate,upValve,downValve;
 
 signals:
     //to simulation
