@@ -2,7 +2,7 @@
 //BAUER Guillaume
 
 #include "interface.h"
-#include "ui_interface.h"       //utile pour le ui
+#include "ui_interface.h"
 #include "blackbox.h"
 #include "simulation.h"
 #include <QApplication>
@@ -38,8 +38,8 @@ int main(int argc, char *argv[])
 
     QObject::connect(i.getUi()->emergencyButton,SIGNAL(clicked()),&bb,SLOT(emergencyButton()));
     QObject::connect(i.getUi()->stopEmergencyButton,SIGNAL(clicked()),&bb,SLOT(endEmergencyButton()));
-    QObject::connect(i.getUi()->loginButton,SIGNAL(clicked()),&bb,SLOT(logIn()));
-    QObject::connect(i.getUi()->logoutButton,SIGNAL(clicked()),&bb,SLOT(logOut()));
+    QObject::connect(i.getUi()->loginButton,SIGNAL(clicked()),&i,SLOT(login()));
+    QObject::connect(i.getUi()->logoutButton,SIGNAL(clicked()),&i,SLOT(logout()));
 
     QObject::connect(&bb,SIGNAL(upGateUpdate(State,int)),&i,SLOT(upGateUpdate(State,int)));
     QObject::connect(&bb,SIGNAL(upValveUpdate(State)),&i,SLOT(upValveUpdate(State)));
@@ -47,9 +47,6 @@ int main(int argc, char *argv[])
     QObject::connect(&bb,SIGNAL(downGateUpdate(State,int)),&i,SLOT(downGateUpdate(State,int)));
     QObject::connect(&bb,SIGNAL(downValveUpdate(State)),&i,SLOT(downValveUpdate(State)));
     QObject::connect(&bb,SIGNAL(downLightUpdate(State)),&i,SLOT(downLightUpdate(State)));
-
-    //QObject::connect(&bb,SIGNAL(),&i,SLOT());
-
 
     //Connects between BLackBox and Simulation
     QObject::connect(&bb, SIGNAL(emergencyStop()), &s, SLOT(emergencyStop()));
@@ -65,6 +62,6 @@ int main(int argc, char *argv[])
     QObject::connect(&s, SIGNAL(valveState(Side,State)), &bb, SLOT(valveState(Side,State)));
     QObject::connect(&s, SIGNAL(gateState(Side,State,int)), &bb, SLOT(gateState(Side,State,int)));
 
-   bb.test();
+    //bb.test();
     return a.exec();
 }

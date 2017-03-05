@@ -32,6 +32,9 @@ public slots:
     void downValveUpdate(State);
     void downLightUpdate(State);
 
+    void login();
+    void logout();
+
 };
 
 #endif // INTERFACE_H

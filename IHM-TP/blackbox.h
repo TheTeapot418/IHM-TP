@@ -48,7 +48,6 @@ public slots:
         void enter();
         void exit();
 
-        void logIn();
 
             //manual mode
         void upGateOpen();
@@ -68,7 +67,6 @@ public slots:
         void downRedLight();
 
         void endEmergencyButton();
-        void logOut();
 
 };
 
