@@ -84,7 +84,7 @@ void Gate::threadFunc(State target) {
                 mtx.lock();
                 threadRunning = false;
                 mtx.unlock();
-                std::exit(0);
+                return;
             }
             mtx2.unlock();
         }
@@ -97,7 +97,7 @@ void Gate::threadFunc(State target) {
                 mtx.lock();
                 threadRunning = false;
                 mtx.unlock();
-                std::exit(0);
+                return;
             }
             mtx2.unlock();
         }
