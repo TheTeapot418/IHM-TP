@@ -34,6 +34,8 @@ void Valve::paint(QPainter* p) {
         break;
     case CLOSED:
         p->drawPixmap(0, 0, closedImg);
+    default:
+        p->drawPixmap(0, 0, closedImg);
     }
 }
 
