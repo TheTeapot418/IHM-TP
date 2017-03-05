@@ -19,6 +19,9 @@ Simulation::Simulation()
     usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png");
     dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png");
 
+    usLight = Light(":/images/US_Light_Red.png", ":/images/US_Light_Green.png");
+    dsLight = Light(":/images/DS_Light_Red.png", ":/images/DS_Light_Green.png");
+
     components.push_back(&usValve);
     components.push_back(&dsValve);
     components.push_back(&usGate);
