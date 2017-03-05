@@ -12,11 +12,13 @@ class BlackBox : public QObject
     Q_OBJECT
 public:
     explicit BlackBox(QObject *parent = 0);
-    void test();
 
 private:
     Side goingTo;
     State upGate,downGate,upValve,downValve;
+    bool emergency,isOperating;
+    void upOpen();
+    void downOpen();
 
 signals:
     //to simulation
