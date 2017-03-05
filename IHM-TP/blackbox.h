@@ -14,6 +14,9 @@ public:
     explicit BlackBox(QObject *parent = 0);
     void test();
 
+private:
+    Side goingTo;
+
 signals:
     //to simulation
     void emergencyStop();
