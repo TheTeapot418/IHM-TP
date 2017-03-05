@@ -1,21 +1,26 @@
 #ifndef GATE_H
 #define GATE_H
 
-#include <QPaintEvent>
+#include <QPainter>
 #include <thread>
 #include <mutex>
 
 #include "sluicecomponent.h"
 #include "enums.h"
 
-class Gate : public SluiceComponent
+class Gate : public QObject, public SluiceComponent
 {
+    Q_OBJECT
+
+signals:
+    void gateStateInternal(State, int);
+
 public:
     Gate();
 
     void emergencyStop(void);
     void endEmergencyStop(void);
-    void paint(QPaintEvent*);
+    void paint(QPainter*);
 
     void open(void);
     void close(void);
