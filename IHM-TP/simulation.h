@@ -13,6 +13,8 @@
 #include "gate.h"
 #include "light.h"
 
+#include "background.h"
+
 
 class Simulation : public QObject
 {
@@ -27,16 +29,22 @@ private:
 
     Valve usValve;
     Valve dsValve;
-    Gate usGate;
-    Gate dsGate;
+    Gate* usGate;
+    Gate* dsGate;
     Light usLight;
     Light dsLight;
 
+    Background background;
+
     std::vector<SluiceComponent*> components;
+
+    void requestWindowUpdate(void);
 
 signals:
     void valveState(Side,State);
     void gateState(Side,State,int);
+
+    void triggerRepaint(void);
 
 public slots:
     void emergencyStop();

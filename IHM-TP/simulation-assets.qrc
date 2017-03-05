@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Background.png</file>
+        <file>images/DS_Gate.png</file>
+        <file>images/DS_Light_Green.png</file>
+        <file>images/DS_Light_Red.png</file>
+        <file>images/DS_Valve_Closed.png</file>
+        <file>images/DS_Valve_Open.png</file>
+        <file>images/US_Gate.png</file>
+        <file>images/US_Light_Green.png</file>
+        <file>images/US_Light_Red.png</file>
+        <file>images/US_Valve_Closed.png</file>
+        <file>images/US_Valve_Open.png</file>
+    </qresource>
+</RCC>

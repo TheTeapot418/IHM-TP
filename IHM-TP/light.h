@@ -2,12 +2,15 @@
 #define LIGHT_H
 
 #include <QPainter>
+#include <QPixmap>
+#include <QString>
 #include "sluicecomponent.h"
 
 class Light : public SluiceComponent
 {
 public:
     Light();
+    Light(QString, QString);
 
     void emergencyStop(void);
     void endEmergencyStop(void);
@@ -24,6 +27,9 @@ private:
 
     Color color = RED;
     bool emergency = false;
+
+    QPixmap redImg;
+    QPixmap greenImg;
 };
 
 #endif // LIGHT_H

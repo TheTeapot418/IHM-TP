@@ -1,10 +1,18 @@
 #include <QPainter>
+#include <QPixmap>
+#include <QString>
+#include <string>
 #include "valve.h"
 #include "enums.h"
 
 Valve::Valve()
 {
 
+}
+
+Valve::Valve(QString oi, QString ci) {
+    openImg = QPixmap(oi);
+    closedImg = QPixmap(ci);
 }
 
 void Valve::emergencyStop(void) {
@@ -20,7 +28,13 @@ void Valve::endEmergencyStop(void) {
 }
 
 void Valve::paint(QPainter* p) {
-
+    switch (state) {
+    case OPEN:
+        p->drawPixmap(0, 0, openImg);
+        break;
+    case CLOSED:
+        p->drawPixmap(0, 0, closedImg);
+    }
 }
 
 void Valve::open(void) {

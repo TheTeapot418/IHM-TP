@@ -11,19 +11,33 @@
 #include "gate.h"
 #include "light.h"
 
+#include "background.h"
+
 Simulation::Simulation()
 {
+
+    usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png");
+    dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png");
+
+    usLight = Light(":/images/US_Light_Red.png", ":/images/US_Light_Green.png");
+    dsLight = Light(":/images/DS_Light_Red.png", ":/images/DS_Light_Green.png");
+
+    usGate = new Gate(":/images/US_Gate.png");
+    dsGate = new Gate(":/images/DS_Gate.png");
+
     components.push_back(&usValve);
     components.push_back(&dsValve);
-    components.push_back(&usGate);
-    components.push_back(&dsGate);
+    components.push_back(usGate);
+    components.push_back(dsGate);
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
-    connect(&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
-    connect(&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
+    connect(usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
+    connect(dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
-    std::vector<Paintable*> p(components.begin(), components.end());
+    std::vector<Paintable*> p;
+    p.push_back(&background);
+    p.insert(p.end(), components.begin(), components.end());
 
     window = new SimulationWindow(p);
     window->show();
@@ -32,18 +46,22 @@ Simulation::Simulation()
 Simulation::~Simulation() {
     window->~SimulationWindow();
     delete window;
+    delete usGate;
+    delete dsGate;
 }
 
 void Simulation::emergencyStop() {
     for (SluiceComponent* c : components) {
         c->emergencyStop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::endEmergencyStop() {
     for (SluiceComponent* c : components) {
         c->endEmergencyStop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::openValve(Side v) {
@@ -60,6 +78,7 @@ void Simulation::openValve(Side v) {
     }
 
     emit(valveState(v, s));
+    requestWindowUpdate();
 }
 
 void Simulation::closeValve(Side v) {
@@ -76,36 +95,40 @@ void Simulation::closeValve(Side v) {
     }
 
     emit(valveState(v, s));
+    requestWindowUpdate();
 }
 
 void Simulation::openGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.open();
+        usGate->open();
         break;
     case DOWNSTREAM:
-        dsGate.open();
+        dsGate->open();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::closeGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.close();
+        usGate->close();
         break;
     case DOWNSTREAM:
-        dsGate.close();
+        dsGate->close();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::stopGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.stop();
+        usGate->stop();
         break;
     case DOWNSTREAM:
-        dsGate.stop();
+        dsGate->stop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::setRedLight(Side l) {
@@ -116,6 +139,7 @@ void Simulation::setRedLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToRed();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::setGreenLight(Side l) {
@@ -126,12 +150,19 @@ void Simulation::setGreenLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToGreen();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::usGateStateInternal(State state, int ps) {
     emit gateState(UPSTREAM, state, ps);
+    requestWindowUpdate();
 }
 
 void Simulation::dsGateStateInternal(State state, int ps) {
     emit gateState(DOWNSTREAM, state, ps);
+    requestWindowUpdate();
+}
+
+void Simulation::requestWindowUpdate() {
+    window->repaint();
 }

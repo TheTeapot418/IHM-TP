@@ -2,6 +2,8 @@
 #define GATE_H
 
 #include <QPainter>
+#include <QPixmap>
+#include <Qstring>
 #include <thread>
 #include <mutex>
 
@@ -17,6 +19,7 @@ signals:
 
 public:
     Gate();
+    Gate(QString);
 
     void emergencyStop(void);
     void endEmergencyStop(void);
@@ -42,6 +45,8 @@ private:
     bool shouldDie = false;
     std::mutex mtx;
     std::mutex mtx2;
+
+    QPixmap img;
 };
 
 #endif // GATE_H
