@@ -12,6 +12,7 @@ class BlackBox : public QObject
     Q_OBJECT
 public:
     explicit BlackBox(QObject *parent = 0);
+    void test();
 
 signals:
     //to simulation
@@ -47,7 +48,7 @@ public slots:
         void enter();
         void exit();
 
-        void loginIn();
+        void logIn();
 
             //manual mode
         void upGateOpen();
@@ -55,14 +56,16 @@ public slots:
         void upGateStop();
         void upValveOpen();
         void upValveClose();
-        void upGreenLigth();
+        void upGreenLight();
+        void upRedLight();
 
         void downGateOpen();
         void downGateClose();
         void downGateStop();
         void downValveOpen();
         void downValveClose();
-        void downGreenLigth();
+        void downGreenLight();
+        void downRedLight();
 
         void endEmergencyButton();
         void logOut();

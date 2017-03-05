@@ -45,8 +45,8 @@ void BlackBox::exit(){
 }
 
 
-void BlackBox::loginIn(){
-    cout << "BB : j'ai reçus un siganl traité par loginIn" << endl;
+void BlackBox::logIn(){
+    cout << "BB : j'ai reçus un siganl traité par logIn" << endl;
 }
 
 
@@ -71,8 +71,12 @@ void BlackBox::upValveClose(){
     cout << "BB : j'ai reçus un siganl traité par upValveClose" << endl;
 }
 
-void BlackBox::upGreenLigth(){
-    cout << "BB : j'ai reçus un siganl traité par upGreenLigth" << endl;
+void BlackBox::upGreenLight(){
+    cout << "BB : j'ai reçus un siganl traité par upGreenLight" << endl;
+}
+
+void BlackBox::upRedLight(){
+    cout << "BB : j'ai reçus un siganl traité par upRedLight" << endl;
 }
 
 
@@ -96,8 +100,12 @@ void BlackBox::downValveClose(){
     cout << "BB : j'ai reçus un siganl traité par downValveClose" << endl;
 }
 
-void BlackBox::downGreenLigth(){
-    cout << "BB : j'ai reçus un siganl traité par downGreenLigth" << endl;
+void BlackBox::downGreenLight(){
+    cout << "BB : j'ai reçus un siganl traité par downGreenLight" << endl;
+}
+
+void BlackBox::downRedLight(){
+    cout << "BB : j'ai reçus un siganl traité par downRedLight" << endl;
 }
 
 
@@ -107,4 +115,8 @@ void BlackBox::endEmergencyButton(){
 
 void BlackBox::logOut(){
     cout << "BB : j'ai reçus un siganl traité par logOut" << endl;
+}
+
+void BlackBox::test(){
+    return;
 }
