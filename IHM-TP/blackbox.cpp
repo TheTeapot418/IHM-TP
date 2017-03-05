@@ -83,14 +83,13 @@ void BlackBox::upOpen(){
     if(downGate != CLOSED){
         emit closeGate(DOWNSTREAM);
         //Sleep ?
-        sleep(11);
     }
     if(downValve == OPEN)
         emit closeValve(DOWNSTREAM);
     if(upValve == CLOSED)
         emit openValve(UPSTREAM);
     emit openGate(UPSTREAM);
-    sleep(11);
+    //Sleep
     emit setGreenLight(UPSTREAM);
     emit upLightUpdate(OPEN);
 
