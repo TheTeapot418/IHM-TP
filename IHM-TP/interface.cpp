@@ -15,6 +15,7 @@ Interface::Interface(QWidget *parent) :
     ui->manualWidget->setVisible(false);
     ui->logoutButton->setVisible(false);
     ui->stopEmergencyButton->setVisible(false);
+    move(1100, 50);
 }
 
 Interface::~Interface()
