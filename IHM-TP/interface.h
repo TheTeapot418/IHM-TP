@@ -23,6 +23,15 @@ public:
 private:
     Ui::Interface *ui;
 
+public slots:
+    void upGateUpdate(State,int);
+    void upValveUpdate(State);
+    void upLightUpdate(State);
+
+    void downGateUpdate(State,int);
+    void downValveUpdate(State);
+    void downLightUpdate(State);
+
 };
 
 #endif // INTERFACE_H

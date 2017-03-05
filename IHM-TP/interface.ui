@@ -10,48 +10,690 @@
     <height>466</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="windowTitle">
    <string>Interface</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>150</y>
-      <width>241</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Voici la fenetre de l'interface</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="enterButton">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>170</y>
-      <width>80</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Entrée</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>597</width>
-     <height>17</height>
-    </rect>
+   <property name="styleSheet">
+    <string notr="true">
+</string>
    </property>
+   <widget class="QWidget" name="automaticWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>300</y>
+      <width>411</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <widget class="QPushButton" name="enterButton">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>20</y>
+       <width>80</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Entrée</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="switchMode">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>90</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>1</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>110</y>
+       <width>51</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amont</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>110</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Aval</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="exitButton">
+     <property name="geometry">
+      <rect>
+       <x>250</x>
+       <y>20</y>
+       <width>80</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sortie</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="manualWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>170</y>
+      <width>421</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="Line" name="line_2">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>-10</y>
+       <width>20</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_11">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>12</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Porte :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_12">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>42</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Vanne :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_13">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>72</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Feu :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_14">
+     <property name="geometry">
+      <rect>
+       <x>229</x>
+       <y>12</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Porte : </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_15">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>42</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Vanne :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_16">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>72</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Feu :</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upOpenGateButton">
+     <property name="geometry">
+      <rect>
+       <x>39</x>
+       <y>9</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ouvrir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upCloseGateButton">
+     <property name="geometry">
+      <rect>
+       <x>95</x>
+       <y>9</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fermer</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upOpenValveButton">
+     <property name="geometry">
+      <rect>
+       <x>39</x>
+       <y>39</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ouvrir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upGreenLightButton">
+     <property name="geometry">
+      <rect>
+       <x>39</x>
+       <y>69</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : green;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upRedLightButton">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>69</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : red;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upCloseValveButton">
+     <property name="geometry">
+      <rect>
+       <x>119</x>
+       <y>39</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fermer</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="upStopGateButton">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>9</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;
+color:white;
+</string>
+     </property>
+     <property name="text">
+      <string>Arrêt</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downCloseGateButton">
+     <property name="geometry">
+      <rect>
+       <x>315</x>
+       <y>10</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fermer</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downStopGateButton">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>10</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;
+color:white;</string>
+     </property>
+     <property name="text">
+      <string>Arrêt</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downRedLightButton">
+     <property name="geometry">
+      <rect>
+       <x>339</x>
+       <y>69</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downOpenValveButton">
+     <property name="geometry">
+      <rect>
+       <x>259</x>
+       <y>39</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ouvrir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downOpenGateButton">
+     <property name="geometry">
+      <rect>
+       <x>260</x>
+       <y>10</y>
+       <width>51</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Ouvrir</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downCloseValveButton">
+     <property name="geometry">
+      <rect>
+       <x>339</x>
+       <y>39</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fermer</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="downGreenLightButton">
+     <property name="geometry">
+      <rect>
+       <x>259</x>
+       <y>69</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : green;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="operatingWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>460</x>
+      <y>20</y>
+      <width>120</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <widget class="QPushButton" name="emergencyButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>80</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>/!\</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stopEmergencyButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>80</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Arrêter l'alarme</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="loginButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>360</y>
+       <width>80</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Mode avancé</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="logoutButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>390</y>
+       <width>80</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Déconnexion</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="printWidget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>30</y>
+      <width>411</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <widget class="Line" name="line">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>0</y>
+       <width>20</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>10</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Amont</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>10</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Aval</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>32</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Porte :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>52</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Vanne :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>72</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Feu : </string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="upGateLabel">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>30</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="upValveLabel">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>50</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : green;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="upLightLabel">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>70</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>229</x>
+       <y>32</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Porte :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>52</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Vanne :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>229</x>
+       <y>72</y>
+       <width>35</width>
+       <height>10</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Feu :</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downGateLabel">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>30</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downValveLabel">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>50</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:green;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="downLightLabel">
+     <property name="geometry">
+      <rect>
+       <x>290</x>
+       <y>70</y>
+       <width>101</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
