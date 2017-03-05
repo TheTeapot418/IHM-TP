@@ -1,5 +1,4 @@
 #include <QPainter>
-#include <iostream>
 #include "background.h"
 
 Background::Background()
