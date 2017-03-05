@@ -29,8 +29,8 @@ private:
 
     Valve usValve;
     Valve dsValve;
-    Gate usGate;
-    Gate dsGate;
+    Gate* usGate;
+    Gate* dsGate;
     Light usLight;
     Light dsLight;
 

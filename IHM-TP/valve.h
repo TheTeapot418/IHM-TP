@@ -23,7 +23,7 @@ public:
     State getState(void);
 
 private:
-    State state = CLOSED;
+    State state = OPEN;
     bool emergency = false;
 
     QPixmap openImg;

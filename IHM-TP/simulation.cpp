@@ -22,15 +22,18 @@ Simulation::Simulation()
     usLight = Light(":/images/US_Light_Red.png", ":/images/US_Light_Green.png");
     dsLight = Light(":/images/DS_Light_Red.png", ":/images/DS_Light_Green.png");
 
+    usGate = new Gate(":/images/US_Gate.png");
+    dsGate = new Gate(":/images/DS_Gate.png");
+
     components.push_back(&usValve);
     components.push_back(&dsValve);
-    components.push_back(&usGate);
-    components.push_back(&dsGate);
+    components.push_back(usGate);
+    components.push_back(dsGate);
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
-    connect(&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
-    connect(&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
+    connect(usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
+    connect(dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
     std::vector<Paintable*> p;
     p.push_back(&background);
@@ -43,6 +46,8 @@ Simulation::Simulation()
 Simulation::~Simulation() {
     window->~SimulationWindow();
     delete window;
+    delete usGate;
+    delete dsGate;
 }
 
 void Simulation::emergencyStop() {
@@ -92,30 +97,30 @@ void Simulation::closeValve(Side v) {
 void Simulation::openGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.open();
+        usGate->open();
         break;
     case DOWNSTREAM:
-        dsGate.open();
+        dsGate->open();
     }
 }
 
 void Simulation::closeGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.close();
+        usGate->close();
         break;
     case DOWNSTREAM:
-        dsGate.close();
+        dsGate->close();
     }
 }
 
 void Simulation::stopGate(Side g) {
     switch(g) {
     case UPSTREAM:
-        usGate.stop();
+        usGate->stop();
         break;
     case DOWNSTREAM:
-        dsGate.stop();
+        dsGate->stop();
     }
 }
 

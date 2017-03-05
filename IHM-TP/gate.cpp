@@ -1,4 +1,6 @@
 #include <QPainter>
+#include <QPixmap>
+#include <QString>
 #include <thread>
 #include <chrono>
 #include "gate.h"
@@ -7,6 +9,10 @@
 Gate::Gate()
 {
 
+}
+
+Gate::Gate(QString gi) {
+    img = QPixmap(gi);
 }
 
 void Gate::emergencyStop() {
@@ -24,7 +30,8 @@ void Gate::endEmergencyStop() {
 }
 
 void Gate::paint(QPainter* p) {
-
+    int y = 0 - 2 * preciseState;
+    p->drawPixmap(0, y, img);
 }
 
 void Gate::open(void) {
