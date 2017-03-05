@@ -54,7 +54,6 @@ void BlackBox::emergencyButton(){
 
 //automatic mode
 void BlackBox::switchMode(int i){
-    cout << i << endl;
     if(i == 0)
         goingTo = UPSTREAM;
     else
@@ -85,7 +84,7 @@ void BlackBox::upGateStop(){
 }
 
 void BlackBox::upValveOpen(){
-    if(upValve == CLOSED)
+    if(upValve == CLOSED && downGate == CLOSED)
         emit openValve(UPSTREAM);
 }
 
@@ -123,7 +122,7 @@ void BlackBox::downGateStop(){
 }
 
 void BlackBox::downValveOpen(){
-    if(downValve == CLOSED)
+    if(downValve == CLOSED && upGate == CLOSED)
         emit openValve(DOWNSTREAM);
 }
 
