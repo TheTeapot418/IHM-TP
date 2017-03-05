@@ -68,7 +68,7 @@ void BlackBox::exit(){
 
 //manual mode
 void BlackBox::upGateOpen(){
-    if(upGate != OPEN && upValve == OPEN && downValve == CLOSED)
+    if((upGate == CLOSED || upGate == STOPPED) && upValve == OPEN && downValve == CLOSED)
         emit openGate(UPSTREAM);
 }
 
@@ -106,7 +106,7 @@ void BlackBox::upRedLight(){
 
 
 void BlackBox::downGateOpen(){
-    if(downGate != OPEN && upValve == CLOSED && downValve == OPEN)
+    if((downGate == CLOSED || downGate == STOPPED) && upValve == CLOSED && downValve == OPEN)
         emit openGate(DOWNSTREAM);
 }
 
