@@ -33,7 +33,8 @@ SOURCES += main.cpp\
     simulationwindow.cpp \
     valve.cpp \
     gate.cpp \
-    light.cpp
+    light.cpp \
+    background.cpp
 
 HEADERS  += blackbox.h \
     enums.h \
@@ -44,7 +45,8 @@ HEADERS  += blackbox.h \
     valve.h \
     gate.h \
     light.h \
-    paintable.h
+    paintable.h \
+    background.h
     enums.h
 
 FORMS    += interface.ui

@@ -13,6 +13,8 @@
 #include "gate.h"
 #include "light.h"
 
+#include "background.h"
+
 
 class Simulation : public QObject
 {
@@ -31,6 +33,8 @@ private:
     Gate dsGate;
     Light usLight;
     Light dsLight;
+
+    Background background;
 
     std::vector<SluiceComponent*> components;
 

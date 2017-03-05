@@ -11,8 +11,11 @@
 #include "gate.h"
 #include "light.h"
 
+#include "background.h"
+
 Simulation::Simulation()
 {
+
     components.push_back(&usValve);
     components.push_back(&dsValve);
     components.push_back(&usGate);
@@ -23,7 +26,9 @@ Simulation::Simulation()
     connect(&usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
     connect(&dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
 
-    std::vector<Paintable*> p(components.begin(), components.end());
+    std::vector<Paintable*> p;
+    p.push_back(&background);
+    p.insert(p.end(), components.begin(), components.end());
 
     window = new SimulationWindow(p);
     window->show();
