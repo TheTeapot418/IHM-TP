@@ -5,6 +5,7 @@
 #include "ui_interface.h"
 #include "blackbox.h"
 #include "simulation.h"
+#include "enums.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -61,6 +62,8 @@ int main(int argc, char *argv[])
 
     QObject::connect(&s, SIGNAL(valveState(Side,State)), &bb, SLOT(valveState(Side,State)));
     QObject::connect(&s, SIGNAL(gateState(Side,State,int)), &bb, SLOT(gateState(Side,State,int)));
+
+    qRegisterMetaType<State>("State");
 
     //bb.test();
     return a.exec();

@@ -25,6 +25,7 @@ void BlackBox::gateState(Side g,State s,int i){
 
 //from interface
 void BlackBox::emergencyButton(){
+    emit openGate(UPSTREAM);
 }
 
 

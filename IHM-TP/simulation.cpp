@@ -2,6 +2,7 @@
 //BAUER Guillaume
 
 #include <vector>
+#include <iostream>
 #include "simulation.h"
 #include "enums.h"
 #include "simulationwindow.h"
@@ -164,5 +165,6 @@ void Simulation::dsGateStateInternal(State state, int ps) {
 }
 
 void Simulation::requestWindowUpdate() {
+    std::cout << "Repaint" << std::endl;
     window->repaint();
 }

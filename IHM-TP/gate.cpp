@@ -37,7 +37,6 @@ void Gate::paint(QPainter* p) {
 void Gate::open(void) {
     if (emergency) return;
     std::lock_guard<std::mutex> lock(mtx);
-    mtx.lock();
     if (threadRunning) return;
     mtx.unlock();
     shouldDie = false;
@@ -48,7 +47,6 @@ void Gate::open(void) {
 void Gate::close(void) {
     if (emergency) return;
     std::lock_guard<std::mutex> lock(mtx);
-    mtx.lock();
     if (threadRunning) return;
     mtx.unlock();
     shouldDie = false;
@@ -82,7 +80,6 @@ void Gate::threadFunc(State target) {
             emit gateStateInternal(state, preciseState);
             std::this_thread::sleep_for(std::chrono::seconds(1));
             std::lock_guard<std::mutex> lock(mtx2);
-            mtx2.lock();
             if (shouldDie) {
                 mtx.lock();
                 threadRunning = false;
