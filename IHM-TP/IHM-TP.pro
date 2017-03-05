@@ -48,3 +48,6 @@ HEADERS  += blackbox.h \
     enums.h
 
 FORMS    += interface.ui
+
+RESOURCES += \
+    simulation-assets.qrc
