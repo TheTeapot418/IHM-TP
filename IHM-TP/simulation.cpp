@@ -57,7 +57,7 @@ void Simulation::emergencyStop() {
     }
 
     emit gateState(UPSTREAM, usGate->getState(), usGate->getPreciseState());
-    emit gateState(DOWNSTREAM, dsGate->getState(), usGate->getPreciseState());
+    emit gateState(DOWNSTREAM, dsGate->getState(), dsGate->getPreciseState());
     emit valveState(UPSTREAM, usValve.getState());
     emit valveState(DOWNSTREAM, dsValve.getState());
 
@@ -70,7 +70,7 @@ void Simulation::endEmergencyStop() {
     }
 
     emit gateState(UPSTREAM, usGate->getState(), usGate->getPreciseState());
-    emit gateState(DOWNSTREAM, dsGate->getState(), usGate->getPreciseState());
+    emit gateState(DOWNSTREAM, dsGate->getState(), dsGate->getPreciseState());
     emit valveState(UPSTREAM, usValve.getState());
     emit valveState(DOWNSTREAM, dsValve.getState());
 

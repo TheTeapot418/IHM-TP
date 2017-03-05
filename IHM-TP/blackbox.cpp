@@ -31,6 +31,10 @@ void BlackBox::valveState(Side v,State s){
 }
 
 void BlackBox::gateState(Side v,State s,int i){
+    if(i == 100)
+        s = OPEN;
+    else if(i == 0)
+        s = CLOSED;
     switch(v){
         case UPSTREAM :
             upGate = s;

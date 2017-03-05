@@ -27,7 +27,6 @@ Ui::Interface * Interface::getUi(){
 }
 
 void Interface::upGateUpdate(State st,int i){
-    cout << "jai recu un signal" <<endl;
     QString txt;
     switch(st){
         case OPEN :
