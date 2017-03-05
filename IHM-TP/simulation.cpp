@@ -54,12 +54,14 @@ void Simulation::emergencyStop() {
     for (SluiceComponent* c : components) {
         c->emergencyStop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::endEmergencyStop() {
     for (SluiceComponent* c : components) {
         c->endEmergencyStop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::openValve(Side v) {
@@ -76,6 +78,7 @@ void Simulation::openValve(Side v) {
     }
 
     emit(valveState(v, s));
+    requestWindowUpdate();
 }
 
 void Simulation::closeValve(Side v) {
@@ -92,6 +95,7 @@ void Simulation::closeValve(Side v) {
     }
 
     emit(valveState(v, s));
+    requestWindowUpdate();
 }
 
 void Simulation::openGate(Side g) {
@@ -102,6 +106,7 @@ void Simulation::openGate(Side g) {
     case DOWNSTREAM:
         dsGate->open();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::closeGate(Side g) {
@@ -112,6 +117,7 @@ void Simulation::closeGate(Side g) {
     case DOWNSTREAM:
         dsGate->close();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::stopGate(Side g) {
@@ -122,6 +128,7 @@ void Simulation::stopGate(Side g) {
     case DOWNSTREAM:
         dsGate->stop();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::setRedLight(Side l) {
@@ -132,6 +139,7 @@ void Simulation::setRedLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToRed();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::setGreenLight(Side l) {
@@ -142,12 +150,19 @@ void Simulation::setGreenLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToGreen();
     }
+    requestWindowUpdate();
 }
 
 void Simulation::usGateStateInternal(State state, int ps) {
     emit gateState(UPSTREAM, state, ps);
+    requestWindowUpdate();
 }
 
 void Simulation::dsGateStateInternal(State state, int ps) {
     emit gateState(DOWNSTREAM, state, ps);
+    requestWindowUpdate();
+}
+
+void Simulation::requestWindowUpdate() {
+    window->repaint();
 }

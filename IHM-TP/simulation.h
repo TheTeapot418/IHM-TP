@@ -38,9 +38,13 @@ private:
 
     std::vector<SluiceComponent*> components;
 
+    void requestWindowUpdate(void);
+
 signals:
     void valveState(Side,State);
     void gateState(Side,State,int);
+
+    void triggerRepaint(void);
 
 public slots:
     void emergencyStop();

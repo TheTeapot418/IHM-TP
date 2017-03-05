@@ -10,6 +10,7 @@ SimulationWindow::SimulationWindow(std::vector<Paintable*> e) : QWidget(0), enti
     setFixedSize(1000, 600);
     setWindowTitle("Simulation");
     move(50, 50);
+    setUpdatesEnabled(true);
 }
 
 SimulationWindow::~SimulationWindow() {
@@ -24,6 +25,6 @@ void SimulationWindow::paintEvent(QPaintEvent* e) {
         p->paint(&painter);
     }
 
-    QWidget::paintEvent(e);
+    //QWidget::paintEvent(e);
     painter.end();
 }
