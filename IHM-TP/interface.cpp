@@ -58,7 +58,7 @@ void Interface::upGateUpdate(State st,int i){
             break;
         case STOPPED :
             ui->upGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Stoped : ";
+            txt = "Stopped : ";
             txt += QString::number(i);
             txt += "%";
             ui->upGateLabel->setText(txt);
@@ -126,7 +126,7 @@ void Interface::downGateUpdate(State st,int i){
             break;
         case STOPPED :
             ui->downGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Stoped : ";
+            txt = "Stopped : ";
             txt += QString::number(i);
             txt += "%";
             ui->downGateLabel->setText(txt);
