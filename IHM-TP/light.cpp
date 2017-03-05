@@ -42,5 +42,5 @@ void Light::setToRed(void) {
 
 void Light::setToGreen(void) {
     if (emergency) return;
-    color = RED;
+    color = GREEN;
 }
