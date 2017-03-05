@@ -44,8 +44,6 @@ signals:
     void valveState(Side,State);
     void gateState(Side,State,int);
 
-    void triggerRepaint(void);
-
 public slots:
     void emergencyStop();
     void endEmergencyStop();
