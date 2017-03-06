@@ -190,11 +190,11 @@ void Simulation::updateWaterLevel() {
     s2 = dsValve.getState();
 
     if (s1 == s2 && s1 == OPEN) {
-        water.setLevel(Water::MID);
+        water.setLevel(MID);
     } else if (s1 == OPEN && s2 == CLOSED) {
-        water.setLevel(Water::HIGH);
+        water.setLevel(HIGH);
     } else if (s1 == CLOSED && s2 == OPEN) {
-        water.setLevel(Water::LOW);
+        water.setLevel(LOW);
     } else {
         return;
     }

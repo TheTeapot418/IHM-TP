@@ -18,4 +18,10 @@ typedef enum {
     STOPPED
 } State;
 
+enum Level {
+    LOW,
+    MID,
+    HIGH
+};
+
 #endif // ENUMS_H
