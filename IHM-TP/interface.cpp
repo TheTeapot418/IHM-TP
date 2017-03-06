@@ -15,6 +15,8 @@ Interface::Interface(QWidget *parent) :
     ui->manualWidget->setVisible(false);
     ui->logoutButton->setVisible(false);
     ui->stopEmergencyButton->setVisible(false);
+    ui->upGateLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+    ui->downGateLabel->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
     move(1100, 50);
 }
 
@@ -28,25 +30,18 @@ Ui::Interface * Interface::getUi(){
 }
 
 void Interface::upGateUpdate(State st,int i){
-    QString txt;
     switch(st){
         case OPEN :
             ui->upGateLabel->setStyleSheet("background-color:green;");
             ui->upGateLabel->setText("");
             break;
         case OPENING :
-            ui->upGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Opening : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->upGateLabel->setText(txt);
+            ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->upGateLabel->setText("Opening : "+QString::number(i)+"%");
             break;
         case CLOSING :
-            ui->upGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Closing : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->upGateLabel->setText(txt);
+            ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->upGateLabel->setText("Closing : "+QString::number(i)+"%");
             break;
         case CLOSED :
             ui->upGateLabel->setStyleSheet("background-color:red;");
@@ -57,11 +52,8 @@ void Interface::upGateUpdate(State st,int i){
             ui->upGateLabel->setText("");
             break;
         case STOPPED :
-            ui->upGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Stopped : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->upGateLabel->setText(txt);
+            ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->upGateLabel->setText("Stopped : "+QString::number(i)+"%");
             break;
     }
 }
@@ -96,25 +88,18 @@ void Interface::upLightUpdate(State st){
 }
 
 void Interface::downGateUpdate(State st,int i){
-    QString txt;
     switch(st){
         case OPEN :
             ui->downGateLabel->setStyleSheet("background-color:green;");
             ui->downGateLabel->setText("");
             break;
         case OPENING :
-            ui->downGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Opening : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->downGateLabel->setText(txt);
+            ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->downGateLabel->setText("Opening : "+QString::number(i)+"%");
             break;
         case CLOSING :
-            ui->downGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Closing : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->downGateLabel->setText(txt);
+            ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->downGateLabel->setText("Closing : "+QString::number(i)+"%");
             break;
         case CLOSED :
             ui->downGateLabel->setStyleSheet("background-color:red;");
@@ -125,11 +110,8 @@ void Interface::downGateUpdate(State st,int i){
             ui->downGateLabel->setText("");
             break;
         case STOPPED :
-            ui->downGateLabel->setStyleSheet("background-color:blue;");
-            txt = "Stopped : ";
-            txt += QString::number(i);
-            txt += "%";
-            ui->downGateLabel->setText(txt);
+            ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
+            ui->downGateLabel->setText("Stopped : "+QString::number(i)+"%");
             break;
     }
 }

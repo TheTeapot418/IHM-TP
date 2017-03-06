@@ -34,6 +34,12 @@
   <property name="windowTitle">
    <string>Interface</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">font: 75 10pt &quot;Berlin Sans FB Demi&quot;;
+QLabel{
+	background-color:transparent;
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true"/>
@@ -69,6 +75,9 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="maximum">
       <number>1</number>
      </property>
@@ -92,8 +101,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>280</x>
-       <y>110</y>
+       <x>270</x>
+       <y>80</y>
        <width>35</width>
        <height>10</height>
       </rect>
@@ -115,6 +124,11 @@
       <string>Sortie</string>
      </property>
     </widget>
+    <zorder>enterButton</zorder>
+    <zorder>switchMode</zorder>
+    <zorder>exitButton</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label</zorder>
    </widget>
    <widget class="QWidget" name="manualWidget" native="true">
     <property name="geometry">
@@ -424,10 +438,10 @@ color:white;</string>
    <widget class="QWidget" name="operatingWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>830</x>
+      <x>810</x>
       <y>0</y>
-      <width>171</width>
-      <height>601</height>
+      <width>190</width>
+      <height>600</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -438,13 +452,13 @@ color:white;</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>150</width>
-       <height>150</height>
+       <width>170</width>
+       <height>170</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:red;
-border-radius: 75px;
+border-radius: 85px;
 color:white;
 font-size:70px;</string>
      </property>
@@ -456,8 +470,8 @@ font-size:70px;</string>
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>170</y>
-       <width>150</width>
+       <y>190</y>
+       <width>170</width>
        <height>40</height>
       </rect>
      </property>
@@ -473,7 +487,7 @@ font-size:70px;</string>
       <rect>
        <x>10</x>
        <y>550</y>
-       <width>150</width>
+       <width>170</width>
        <height>40</height>
       </rect>
      </property>
@@ -490,7 +504,7 @@ font-size:70px;</string>
       <rect>
        <x>10</x>
        <y>550</y>
-       <width>150</width>
+       <width>170</width>
        <height>40</height>
       </rect>
      </property>
@@ -507,31 +521,24 @@ font-size:70px;</string>
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>451</width>
-      <height>131</height>
+      <width>810</width>
+      <height>240</height>
      </rect>
     </property>
-    <widget class="Line" name="line">
-     <property name="geometry">
-      <rect>
-       <x>200</x>
-       <y>0</y>
-       <width>20</width>
-       <height>111</height>
-      </rect>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-    </widget>
+    <property name="styleSheet">
+     <string notr="true">background-color:lightGrey;</string>
+    </property>
     <widget class="QLabel" name="label_3">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>10</y>
-       <width>35</width>
-       <height>10</height>
+       <x>170</x>
+       <y>15</y>
+       <width>60</width>
+       <height>15</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:20px;</string>
      </property>
      <property name="text">
       <string>Amont</string>
@@ -540,11 +547,14 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_4">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>10</y>
-       <width>35</width>
-       <height>10</height>
+       <x>590</x>
+       <y>15</y>
+       <width>40</width>
+       <height>15</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size : 20px;</string>
      </property>
      <property name="text">
       <string>Aval</string>
@@ -553,11 +563,14 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_5">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>32</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>60</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Porte :</string>
@@ -566,10 +579,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_6">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>52</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>120</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -579,10 +592,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_7">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>72</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>180</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -592,14 +605,15 @@ font-size:70px;</string>
     <widget class="QLabel" name="upGateLabel">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>30</y>
-       <width>101</width>
-       <height>16</height>
+       <x>100</x>
+       <y>60</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color : red;</string>
+      <string notr="true">background-color : red;
+color:white;</string>
      </property>
      <property name="text">
       <string/>
@@ -608,10 +622,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="upValveLabel">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>50</y>
-       <width>101</width>
-       <height>16</height>
+       <x>100</x>
+       <y>120</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -624,10 +638,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="upLightLabel">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>70</y>
-       <width>101</width>
-       <height>16</height>
+       <x>100</x>
+       <y>180</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -640,10 +654,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
-       <x>229</x>
-       <y>32</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>60</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -653,10 +667,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_9">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>52</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>120</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -666,10 +680,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>229</x>
-       <y>72</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>180</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -679,14 +693,15 @@ font-size:70px;</string>
     <widget class="QLabel" name="downGateLabel">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>30</y>
-       <width>101</width>
-       <height>16</height>
+       <x>510</x>
+       <y>60</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color:red;</string>
+      <string notr="true">background-color:red;
+color:white;</string>
      </property>
      <property name="text">
       <string/>
@@ -695,10 +710,10 @@ font-size:70px;</string>
     <widget class="QLabel" name="downValveLabel">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>50</y>
-       <width>101</width>
-       <height>16</height>
+       <x>510</x>
+       <y>120</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -711,15 +726,31 @@ font-size:70px;</string>
     <widget class="QLabel" name="downLightLabel">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>70</y>
-       <width>101</width>
-       <height>16</height>
+       <x>510</x>
+       <y>180</y>
+       <width>270</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color:red;
 </string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lineBar">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>0</y>
+       <width>10</width>
+       <height>240</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : black;</string>
      </property>
      <property name="text">
       <string/>

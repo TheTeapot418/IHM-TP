@@ -108,8 +108,7 @@ void BlackBox::gateState(Side v,State s,int i){
 
 //from interface
 void BlackBox::emergencyButton(){
-    if(emergency)
-        return;
+    if(emergency)return;
     emit emergencyStop();
     emergency = true;
     emit upLightUpdate(CLOSED);
@@ -286,8 +285,7 @@ void BlackBox::downRedLight(){
 
 
 void BlackBox::endEmergencyButton(){
-    if(!emergency)
-        return;
+    if(!emergency)return;
     emit endEmergencyStop();
     emergency = false;
 }
