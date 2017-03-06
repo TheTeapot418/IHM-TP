@@ -11,5 +11,7 @@
         <file>images/US_Light_Red.png</file>
         <file>images/US_Valve_Closed.png</file>
         <file>images/US_Valve_Open.png</file>
+        <file>images/WaterLevel_High.png</file>
+        <file>images/WaterLevel_Mid.png</file>
     </qresource>
 </RCC>

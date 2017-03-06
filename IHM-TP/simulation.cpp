@@ -38,6 +38,7 @@ Simulation::Simulation()
 
     std::vector<Paintable*> p;
     p.push_back(&background);
+    p.push_back(&water);
     p.insert(p.end(), components.begin(), components.end());
 
     window = new SimulationWindow(p);

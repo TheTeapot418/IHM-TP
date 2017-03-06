@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     valve.cpp \
     gate.cpp \
     light.cpp \
-    background.cpp
+    background.cpp \
+    water.cpp
 
 HEADERS  += blackbox.h \
     enums.h \
@@ -46,7 +47,8 @@ HEADERS  += blackbox.h \
     gate.h \
     light.h \
     paintable.h \
-    background.h
+    background.h \
+    water.h
     enums.h
 
 FORMS    += interface.ui

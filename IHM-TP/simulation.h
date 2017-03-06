@@ -14,6 +14,7 @@
 #include "light.h"
 
 #include "background.h"
+#include "water.h"
 
 
 class Simulation : public QObject
@@ -35,6 +36,7 @@ private:
     Light dsLight;
 
     Background background;
+    Water water;
 
     std::vector<SluiceComponent*> components;
 
