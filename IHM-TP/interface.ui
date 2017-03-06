@@ -50,13 +50,16 @@
       <height>760</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:lightGrey;</string>
+    </property>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>12</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>70</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -66,10 +69,10 @@
     <widget class="QLabel" name="label_12">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>42</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>150</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -79,10 +82,10 @@
     <widget class="QLabel" name="label_13">
      <property name="geometry">
       <rect>
-       <x>9</x>
-       <y>72</y>
-       <width>35</width>
-       <height>10</height>
+       <x>30</x>
+       <y>260</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -92,10 +95,10 @@
     <widget class="QLabel" name="label_14">
      <property name="geometry">
       <rect>
-       <x>229</x>
-       <y>12</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>70</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -105,10 +108,10 @@
     <widget class="QLabel" name="label_15">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>42</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>150</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -118,10 +121,10 @@
     <widget class="QLabel" name="label_16">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>72</y>
-       <width>35</width>
-       <height>10</height>
+       <x>440</x>
+       <y>260</y>
+       <width>70</width>
+       <height>30</height>
       </rect>
      </property>
      <property name="text">
@@ -131,11 +134,14 @@
     <widget class="QPushButton" name="upOpenGateButton">
      <property name="geometry">
       <rect>
-       <x>39</x>
-       <y>9</y>
-       <width>51</width>
-       <height>16</height>
+       <x>100</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Ouvrir</string>
@@ -144,11 +150,14 @@
     <widget class="QPushButton" name="upCloseGateButton">
      <property name="geometry">
       <rect>
-       <x>95</x>
-       <y>9</y>
-       <width>51</width>
-       <height>16</height>
+       <x>200</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Fermer</string>
@@ -157,11 +166,14 @@
     <widget class="QPushButton" name="upOpenValveButton">
      <property name="geometry">
       <rect>
-       <x>39</x>
-       <y>39</y>
-       <width>71</width>
-       <height>16</height>
+       <x>110</x>
+       <y>140</y>
+       <width>115</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Ouvrir</string>
@@ -170,14 +182,16 @@
     <widget class="QPushButton" name="upGreenLightButton">
      <property name="geometry">
       <rect>
-       <x>39</x>
-       <y>69</y>
-       <width>71</width>
-       <height>16</height>
+       <x>100</x>
+       <y>280</y>
+       <width>50</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color : green;</string>
+      <string notr="true">background-color : green;
+
+border-radius: 25px;</string>
      </property>
      <property name="text">
       <string/>
@@ -186,14 +200,16 @@
     <widget class="QPushButton" name="upRedLightButton">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>69</y>
-       <width>71</width>
-       <height>16</height>
+       <x>100</x>
+       <y>220</y>
+       <width>50</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color : red;
+
+border-radius: 25px;
 </string>
      </property>
      <property name="text">
@@ -203,11 +219,14 @@
     <widget class="QPushButton" name="upCloseValveButton">
      <property name="geometry">
       <rect>
-       <x>119</x>
-       <y>39</y>
-       <width>71</width>
-       <height>16</height>
+       <x>255</x>
+       <y>140</y>
+       <width>115</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Fermer</string>
@@ -216,10 +235,10 @@
     <widget class="QPushButton" name="upStopGateButton">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>9</y>
-       <width>51</width>
-       <height>16</height>
+       <x>300</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -234,11 +253,14 @@ color:white;
     <widget class="QPushButton" name="downCloseGateButton">
      <property name="geometry">
       <rect>
-       <x>315</x>
-       <y>10</y>
-       <width>51</width>
-       <height>16</height>
+       <x>610</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Fermer</string>
@@ -247,10 +269,10 @@ color:white;
     <widget class="QPushButton" name="downStopGateButton">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>10</y>
-       <width>51</width>
-       <height>16</height>
+       <x>710</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -264,14 +286,16 @@ color:white;</string>
     <widget class="QPushButton" name="downRedLightButton">
      <property name="geometry">
       <rect>
-       <x>339</x>
-       <y>69</y>
-       <width>71</width>
-       <height>16</height>
+       <x>510</x>
+       <y>220</y>
+       <width>50</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color : red;</string>
+      <string notr="true">
+border-radius: 25px;
+background-color : red;</string>
      </property>
      <property name="text">
       <string/>
@@ -280,11 +304,14 @@ color:white;</string>
     <widget class="QPushButton" name="downOpenValveButton">
      <property name="geometry">
       <rect>
-       <x>259</x>
-       <y>39</y>
-       <width>71</width>
-       <height>16</height>
+       <x>520</x>
+       <y>140</y>
+       <width>115</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Ouvrir</string>
@@ -293,11 +320,14 @@ color:white;</string>
     <widget class="QPushButton" name="downOpenGateButton">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>10</y>
-       <width>51</width>
-       <height>16</height>
+       <x>510</x>
+       <y>60</y>
+       <width>70</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Ouvrir</string>
@@ -306,11 +336,14 @@ color:white;</string>
     <widget class="QPushButton" name="downCloseValveButton">
      <property name="geometry">
       <rect>
-       <x>339</x>
-       <y>39</y>
-       <width>71</width>
-       <height>16</height>
+       <x>665</x>
+       <y>140</y>
+       <width>115</width>
+       <height>50</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Fermer</string>
@@ -319,14 +352,31 @@ color:white;</string>
     <widget class="QPushButton" name="downGreenLightButton">
      <property name="geometry">
       <rect>
-       <x>259</x>
-       <y>69</y>
-       <width>71</width>
-       <height>16</height>
+       <x>510</x>
+       <y>280</y>
+       <width>50</width>
+       <height>50</height>
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color : green;</string>
+      <string notr="true">background-color : green;
+border-radius: 25px;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_18">
+     <property name="geometry">
+      <rect>
+       <x>400</x>
+       <y>0</y>
+       <width>10</width>
+       <height>760</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:black;</string>
      </property>
      <property name="text">
       <string/>
