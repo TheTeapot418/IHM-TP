@@ -1,6 +1,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include "water.h"
+#include "enums.h"
 
 Water::Water()
 {

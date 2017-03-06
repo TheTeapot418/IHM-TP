@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QPixmap>
 #include "paintable.h"
+#include "enums.h"
 
 
 class Water : public Paintable
@@ -11,12 +12,6 @@ class Water : public Paintable
 public:
     Water();
     void paint(QPainter*);
-
-    enum Level {
-        LOW,
-        MID,
-        HIGH
-    };
 
     void setLevel(Level);
 
