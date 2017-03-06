@@ -92,6 +92,7 @@ void Simulation::openValve(Side v) {
     }
 
     emit(valveState(v, s));
+    updateWaterLevel();
     requestWindowUpdate();
 }
 
@@ -109,6 +110,7 @@ void Simulation::closeValve(Side v) {
     }
 
     emit(valveState(v, s));
+    updateWaterLevel();
     requestWindowUpdate();
 }
 
@@ -180,4 +182,20 @@ void Simulation::dsGateStateInternal(State state, int ps) {
 void Simulation::requestWindowUpdate() {
     std::cout << "Repaint" << std::endl;
     window->repaint();
+}
+
+void Simulation::updateWaterLevel() {
+    State s1, s2;
+    s1 = usValve.getState();
+    s2 = dsValve.getState();
+
+    if (s1 == s2 && s1 == OPEN) {
+        water.setLevel(Water::MID);
+    } else if (s1 == OPEN && s2 == CLOSED) {
+        water.setLevel(Water::HIGH);
+    } else if (s1 == CLOSED && s2 == OPEN) {
+        water.setLevel(Water::LOW);
+    } else {
+        return;
+    }
 }

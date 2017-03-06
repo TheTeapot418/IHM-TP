@@ -41,6 +41,7 @@ private:
     std::vector<SluiceComponent*> components;
 
     void requestWindowUpdate(void);
+    void updateWaterLevel(void);
 
 signals:
     void valveState(Side,State);
