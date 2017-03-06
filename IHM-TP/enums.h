@@ -4,19 +4,19 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-typedef enum {
+enum Side{
     UPSTREAM,
     DOWNSTREAM
-} Side;
+} ;
 
-typedef enum {
+enum State {
     OPEN,
     OPENING,
     CLOSING,
     CLOSED,
     ALERT,
     STOPPED
-} State;
+} ;
 
 enum Level {
     LOW,
