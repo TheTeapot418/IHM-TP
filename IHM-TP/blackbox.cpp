@@ -108,6 +108,8 @@ void BlackBox::gateState(Side v,State s,int i){
 
 //from interface
 void BlackBox::emergencyButton(){
+    if(emergency)
+        return;
     emit emergencyStop();
     emergency = true;
     emit upLightUpdate(CLOSED);
@@ -117,7 +119,6 @@ void BlackBox::emergencyButton(){
 
 //automatic mode
 void BlackBox::switchMode(int i){
-    cout << i << endl;
     if(i == 0)
         goingTo = UPSTREAM;
     else
@@ -285,6 +286,8 @@ void BlackBox::downRedLight(){
 
 
 void BlackBox::endEmergencyButton(){
+    if(!emergency)
+        return;
     emit endEmergencyStop();
     emergency = false;
 }
