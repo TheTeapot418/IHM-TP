@@ -42,7 +42,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>300</y>
+      <y>430</y>
       <width>411</width>
       <height>131</height>
      </rect>
@@ -119,8 +119,8 @@
    <widget class="QWidget" name="manualWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>170</y>
+      <x>50</x>
+      <y>270</y>
       <width>421</width>
       <height>101</height>
      </rect>
@@ -424,33 +424,45 @@ color:white;</string>
    <widget class="QWidget" name="operatingWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>20</y>
-      <width>120</width>
-      <height>421</height>
+      <x>830</x>
+      <y>0</y>
+      <width>171</width>
+      <height>601</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color : grey;</string>
     </property>
     <widget class="QPushButton" name="emergencyButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>20</y>
-       <width>80</width>
-       <height>71</height>
+       <x>10</x>
+       <y>10</y>
+       <width>150</width>
+       <height>150</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">background-color:red;
+border-radius: 75px;
+color:white;
+font-size:70px;</string>
+     </property>
      <property name="text">
-      <string>/!\</string>
+      <string>!</string>
      </property>
     </widget>
     <widget class="QPushButton" name="stopEmergencyButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>100</y>
-       <width>80</width>
-       <height>21</height>
+       <x>10</x>
+       <y>170</y>
+       <width>150</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Arrêter l'alarme</string>
@@ -459,11 +471,15 @@ color:white;</string>
     <widget class="QPushButton" name="loginButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>360</y>
-       <width>80</width>
-       <height>16</height>
+       <x>10</x>
+       <y>550</y>
+       <width>150</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;
+</string>
      </property>
      <property name="text">
       <string>Mode avancé</string>
@@ -472,11 +488,14 @@ color:white;</string>
     <widget class="QPushButton" name="logoutButton">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>390</y>
-       <width>80</width>
-       <height>16</height>
+       <x>10</x>
+       <y>550</y>
+       <width>150</width>
+       <height>40</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color : white;</string>
      </property>
      <property name="text">
       <string>Déconnexion</string>
@@ -486,10 +505,10 @@ color:white;</string>
    <widget class="QWidget" name="printWidget" native="true">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>30</y>
-      <width>411</width>
-      <height>101</height>
+      <x>0</x>
+      <y>0</y>
+      <width>451</width>
+      <height>131</height>
      </rect>
     </property>
     <widget class="Line" name="line">
