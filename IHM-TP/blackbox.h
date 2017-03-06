@@ -6,12 +6,14 @@
 
 #include <QObject>
 #include "enums.h"
+#include "simulation.h"
+#include "interface.h"
 
 class BlackBox : public QObject
 {
     Q_OBJECT
 public:
-    explicit BlackBox(QObject *parent = 0);
+    explicit BlackBox(Interface * i,Simulation * s,QObject *parent = 0);
 
 private:
     Side goingTo;
@@ -19,6 +21,7 @@ private:
     bool emergency,isOperating;
     void upOpen();
     void downOpen();
+    void connection(Interface * i,Simulation * s);
 
 signals:
     //to simulation

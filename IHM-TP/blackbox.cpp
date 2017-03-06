@@ -2,19 +2,71 @@
 //BAUER Guillaume
 
 #include "blackbox.h"
+#include "ui_interface.h"
 
 #include <iostream>
 #include <unistd.h>
 using namespace std;
 
-BlackBox::BlackBox(QObject *parent) : QObject(parent) {
+BlackBox::BlackBox(Interface * i,Simulation * s,QObject *parent) : QObject(parent) {
     upGate = downGate = CLOSED;
     upValve = downValve = OPEN;
     emergency = false;
     isOperating = false;
     goingTo = UPSTREAM;
+    connection(i,s);
 }
 
+void BlackBox::connection(Interface * i,Simulation * s){
+
+    //Connects between BlackBox and Interface
+    QObject::connect(i->getUi()->enterButton,SIGNAL(clicked()),this,SLOT(enter()));
+    QObject::connect(i->getUi()->exitButton,SIGNAL(clicked()),this,SLOT(exit()));
+    QObject::connect(i->getUi()->switchMode,SIGNAL(sliderMoved(int)),this,SLOT(switchMode(int)));
+
+    QObject::connect(i->getUi()->upOpenGateButton,SIGNAL(clicked()),this,SLOT(upGateOpen()));
+    QObject::connect(i->getUi()->upCloseGateButton,SIGNAL(clicked()),this,SLOT(upGateClose()));
+    QObject::connect(i->getUi()->upStopGateButton,SIGNAL(clicked()),this,SLOT(upGateStop()));
+    QObject::connect(i->getUi()->upOpenValveButton,SIGNAL(clicked()),this,SLOT(upValveOpen()));
+    QObject::connect(i->getUi()->upCloseValveButton,SIGNAL(clicked()),this,SLOT(upValveClose()));
+    QObject::connect(i->getUi()->upGreenLightButton,SIGNAL(clicked()),this,SLOT(upGreenLight()));
+    QObject::connect(i->getUi()->upRedLightButton,SIGNAL(clicked()),this,SLOT(upRedLight()));
+
+    QObject::connect(i->getUi()->downOpenGateButton,SIGNAL(clicked()),this,SLOT(downGateOpen()));
+    QObject::connect(i->getUi()->downCloseGateButton,SIGNAL(clicked()),this,SLOT(downGateClose()));
+    QObject::connect(i->getUi()->downStopGateButton,SIGNAL(clicked()),this,SLOT(downGateStop()));
+    QObject::connect(i->getUi()->downOpenValveButton,SIGNAL(clicked()),this,SLOT(downValveOpen()));
+    QObject::connect(i->getUi()->downCloseValveButton,SIGNAL(clicked()),this,SLOT(downValveClose()));
+    QObject::connect(i->getUi()->downGreenLightButton,SIGNAL(clicked()),this,SLOT(downGreenLight()));
+    QObject::connect(i->getUi()->downRedLightButton,SIGNAL(clicked()),this,SLOT(downRedLight()));
+
+    QObject::connect(i->getUi()->emergencyButton,SIGNAL(clicked()),this,SLOT(emergencyButton()));
+    QObject::connect(i->getUi()->stopEmergencyButton,SIGNAL(clicked()),this,SLOT(endEmergencyButton()));
+    QObject::connect(i->getUi()->loginButton,SIGNAL(clicked()),i,SLOT(login()));
+    QObject::connect(i->getUi()->logoutButton,SIGNAL(clicked()),i,SLOT(logout()));
+
+    QObject::connect(this,SIGNAL(upGateUpdate(State,int)),i,SLOT(upGateUpdate(State,int)));
+    QObject::connect(this,SIGNAL(upValveUpdate(State)),i,SLOT(upValveUpdate(State)));
+    QObject::connect(this,SIGNAL(upLightUpdate(State)),i,SLOT(upLightUpdate(State)));
+    QObject::connect(this,SIGNAL(downGateUpdate(State,int)),i,SLOT(downGateUpdate(State,int)));
+    QObject::connect(this,SIGNAL(downValveUpdate(State)),i,SLOT(downValveUpdate(State)));
+    QObject::connect(this,SIGNAL(downLightUpdate(State)),i,SLOT(downLightUpdate(State)));
+
+    //Connects between BlackBox and Simulation
+    QObject::connect(this,SIGNAL(emergencyStop()),s,SLOT(emergencyStop()));
+    QObject::connect(this,SIGNAL(endEmergencyStop()),s,SLOT(endEmergencyStop()));
+    QObject::connect(this,SIGNAL(openValve(Side)),s,SLOT(openValve(Side)));
+    QObject::connect(this,SIGNAL(closeValve(Side)),s,SLOT(closeValve(Side)));
+    QObject::connect(this,SIGNAL(openGate(Side)),s,SLOT(openGate(Side)));
+    QObject::connect(this,SIGNAL(closeGate(Side)),s,SLOT(closeGate(Side)));
+    QObject::connect(this,SIGNAL(stopGate(Side)),s,SLOT(stopGate(Side)));
+    QObject::connect(this,SIGNAL(setRedLight(Side)),s,SLOT(setRedLight(Side)));
+    QObject::connect(this,SIGNAL(setGreenLight(Side)),s,SLOT(setGreenLight(Side)));
+
+    QObject::connect(s,SIGNAL(valveState(Side,State)),this,SLOT(valveState(Side,State)));
+    QObject::connect(s,SIGNAL(gateState(Side,State,int)),this,SLOT(gateState(Side,State,int)));
+
+}
 
 ////////////////////
 //      SLOT      //
