@@ -37,11 +37,11 @@ void Interface::upGateUpdate(State st,int i){
             break;
         case OPENING :
             ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->upGateLabel->setText("Opening : "+QString::number(i)+"%");
+            ui->upGateLabel->setText("Ouverture : "+QString::number(i)+"%");
             break;
         case CLOSING :
             ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->upGateLabel->setText("Closing : "+QString::number(i)+"%");
+            ui->upGateLabel->setText("Fermeture : "+QString::number(i)+"%");
             break;
         case CLOSED :
             ui->upGateLabel->setStyleSheet("background-color:red;");
@@ -53,7 +53,7 @@ void Interface::upGateUpdate(State st,int i){
             break;
         case STOPPED :
             ui->upGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->upGateLabel->setText("Stopped : "+QString::number(i)+"%");
+            ui->upGateLabel->setText("Arrêtée : "+QString::number(i)+"%");
             break;
     }
 }
@@ -95,11 +95,11 @@ void Interface::downGateUpdate(State st,int i){
             break;
         case OPENING :
             ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->downGateLabel->setText("Opening : "+QString::number(i)+"%");
+            ui->downGateLabel->setText("Ouverture : "+QString::number(i)+"%");
             break;
         case CLOSING :
             ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->downGateLabel->setText("Closing : "+QString::number(i)+"%");
+            ui->downGateLabel->setText("Fermeture : "+QString::number(i)+"%");
             break;
         case CLOSED :
             ui->downGateLabel->setStyleSheet("background-color:red;");
@@ -111,7 +111,7 @@ void Interface::downGateUpdate(State st,int i){
             break;
         case STOPPED :
             ui->downGateLabel->setStyleSheet("background-color:blue;color:white;");
-            ui->downGateLabel->setText("Stopped : "+QString::number(i)+"%");
+            ui->downGateLabel->setText("Arrêtée : "+QString::number(i)+"%");
             break;
     }
 }
