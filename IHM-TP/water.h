@@ -15,8 +15,7 @@ class Water : public QObject,public Paintable
     Q_OBJECT
 
 public:
-    //explicit Water(QObject *parent = 0);
-    Water();
+    Water(QString);
     void paint(QPainter*);
     void updateValve(Side,State);
 

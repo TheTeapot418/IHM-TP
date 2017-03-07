@@ -11,8 +11,9 @@ Gate::Gate()
 
 }
 
-Gate::Gate(QString gi) {
+Gate::Gate(QString gi,QString giAlarm) {
     img = QPixmap(gi);
+    imgAlarm = QPixmap(giAlarm);
 }
 
 void Gate::emergencyStop() {
@@ -32,6 +33,8 @@ void Gate::endEmergencyStop() {
 void Gate::paint(QPainter* p) {
     int y = 0 - 2 * preciseState;
     p->drawPixmap(0, y, img);
+    if(state == ALERT)
+        p->drawPixmap(0,y,imgAlarm);
 }
 
 void Gate::open(void) {

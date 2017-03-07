@@ -17,15 +17,15 @@
 Simulation::Simulation()
 {
 
-    usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png");
-    dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png");
+    usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png", ":/images/US_Valve_Alarm.png");
+    dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png", ":/images/DS_Valve_Alarm.png");
 
     usLight = Light(":/images/US_Light_Red.png", ":/images/US_Light_Green.png");
     dsLight = Light(":/images/DS_Light_Red.png", ":/images/DS_Light_Green.png");
 
-    usGate = new Gate(":/images/US_Gate.png");
-    dsGate = new Gate(":/images/DS_Gate.png");
-    water = new Water();
+    usGate = new Gate(":/images/US_Gate.png",":/images/US_Gate_Alarm.png");
+    dsGate = new Gate(":/images/DS_Gate.png",":/images/DS_Gate_Alarm.png");
+    water = new Water(":/images/WaterLevel.png");
 
     components.push_back(&usValve);
     components.push_back(&dsValve);

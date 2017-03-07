@@ -4,9 +4,8 @@
 #include <iostream>
 using namespace std;
 
-//Water::Water(QObject *parent) : Paintable(),QObject(parent) {
-Water::Water(){
-    img = QPixmap(":/images/WaterLevel_High.png");
+Water::Water(QString gi){
+    img = QPixmap(gi);
     upValve = downValve = OPEN;
     vitesse = 0;
     thread = std::thread(&Water::run,this);
