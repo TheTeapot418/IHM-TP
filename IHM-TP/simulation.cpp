@@ -63,6 +63,8 @@ void Simulation::emergencyStop() {
     emit gateState(DOWNSTREAM, dsGate->getState(), dsGate->getPreciseState());
     emit valveState(UPSTREAM, usValve.getState());
     emit valveState(DOWNSTREAM, dsValve.getState());
+    water->updateValve(UPSTREAM,ALERT);
+    water->updateValve(DOWNSTREAM,ALERT);
 
     requestWindowUpdate();
 }

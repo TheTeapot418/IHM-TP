@@ -208,7 +208,7 @@ State BlackBox::valveState(Side s){
 }
 
 #define OTHER(X) X==UPSTREAM?DOWNSTREAM:UPSTREAM
-#define SIDELEVEL(X) X==UPSTREAM?HIGH:LOW
+//#define SIDELEVEL(X) X==UPSTREAM?HIGH:LOW
 void BlackBox::openGateInternal(){
     if(emergency)return;
     mtx.lock();
@@ -231,7 +231,7 @@ void BlackBox::openGateInternal(){
             }
             operation = VERIFYVALVE;
         case VERIFYVALVE :
-            if(water != SIDELEVEL(operationSide)){
+            if((operationSide==UPSTREAM)?(water != HIGH):(water != LOW)){
                 if(valveState(OTHER(operationSide)) == OPEN)
                         emit closeValve(OTHER(operationSide));
                 if(valveState(operationSide) == CLOSED)
@@ -239,7 +239,7 @@ void BlackBox::openGateInternal(){
             }
             operation = WAITINGWATER;
         case WAITINGWATER :
-            if(water != SIDELEVEL(operationSide))
+            if((operationSide==UPSTREAM)?(water != HIGH):(water != LOW))
                 break;
             operation = OPENGATE;
         case OPENGATE :
