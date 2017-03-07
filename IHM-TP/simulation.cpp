@@ -25,6 +25,7 @@ Simulation::Simulation()
 
     usGate = new Gate(":/images/US_Gate.png");
     dsGate = new Gate(":/images/DS_Gate.png");
+    water = new Water();
 
     components.push_back(&usValve);
     components.push_back(&dsValve);
@@ -35,10 +36,11 @@ Simulation::Simulation()
 
     connect(usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
     connect(dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
+    connect(water,SIGNAL(waterLevelInternal(Level)),this,SLOT(waterLevelInternal(Level)));
 
     std::vector<Paintable*> p;
+    p.push_back(water);
     p.push_back(&background);
-    p.push_back(&water);
     p.insert(p.end(), components.begin(), components.end());
 
     window = new SimulationWindow(p);
@@ -92,7 +94,7 @@ void Simulation::openValve(Side v) {
     }
 
     emit(valveState(v, s));
-    updateWaterLevel();
+    water->updateValve(v,s);
     requestWindowUpdate();
 }
 
@@ -110,7 +112,7 @@ void Simulation::closeValve(Side v) {
     }
 
     emit(valveState(v, s));
-    updateWaterLevel();
+    water->updateValve(v,s);
     requestWindowUpdate();
 }
 
@@ -179,23 +181,14 @@ void Simulation::dsGateStateInternal(State state, int ps) {
     requestWindowUpdate();
 }
 
+void Simulation::waterLevelInternal(Level lvl){
+    emit waterLevel(lvl);
+    requestWindowUpdate();
+}
+
 void Simulation::requestWindowUpdate() {
     std::cout << "Repaint" << std::endl;
     window->repaint();
 }
 
-void Simulation::updateWaterLevel() {
-    State s1, s2;
-    s1 = usValve.getState();
-    s2 = dsValve.getState();
 
-    if (s1 == s2 && s1 == OPEN) {
-        water.setLevel(MID);
-    } else if (s1 == OPEN && s2 == CLOSED) {
-        water.setLevel(HIGH);
-    } else if (s1 == CLOSED && s2 == OPEN) {
-        water.setLevel(LOW);
-    } else {
-        return;
-    }
-}

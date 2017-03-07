@@ -68,6 +68,7 @@ public slots:
     //from simulation
     void valveState(Side,State);
     void gateState(Side,State,int); //int pour la progression
+    void waterLevel(Level);
 
     //from interface
     void login();

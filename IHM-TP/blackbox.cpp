@@ -68,6 +68,7 @@ void BlackBox::connection(Interface * i,Simulation * s){
 
     connect(s,SIGNAL(valveState(Side,State)),this,SLOT(valveState(Side,State)));
     connect(s,SIGNAL(gateState(Side,State,int)),this,SLOT(gateState(Side,State,int)));
+    connect(s,SIGNAL(waterLevel(Level)),this,SLOT(waterLevel(Level)));
 
     connect(this,SIGNAL(OpenGateInternalSignal()),this,SLOT(OpenGateInternal()),Qt::QueuedConnection);
 }
@@ -118,6 +119,10 @@ void BlackBox::gateState(Side v,State s,int i){
             emit downGateUpdate(s,i);
             break;
     }
+}
+
+void BlackBox::waterLevel(Level lvl){
+
 }
 
 

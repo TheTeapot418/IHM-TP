@@ -11,6 +11,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Interface i;
+    qRegisterMetaType<Level>("Level");
     Simulation s;
     BlackBox bb(&i,&s);
     i.show();

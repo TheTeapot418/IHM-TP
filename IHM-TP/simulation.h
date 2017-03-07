@@ -36,16 +36,16 @@ private:
     Light dsLight;
 
     Background background;
-    Water water;
+    Water* water;
 
     std::vector<SluiceComponent*> components;
 
     void requestWindowUpdate(void);
-    void updateWaterLevel(void);
 
 signals:
     void valveState(Side,State);
     void gateState(Side,State,int);
+    void waterLevel(Level);
 
 public slots:
     void emergencyStop();
@@ -60,6 +60,7 @@ public slots:
 
     void usGateStateInternal(State, int);
     void dsGateStateInternal(State, int);
+    void waterLevelInternal(Level);
 };
 
 #endif // SIMULATION_H
