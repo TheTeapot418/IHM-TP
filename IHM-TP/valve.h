@@ -12,7 +12,7 @@ class Valve : public SluiceComponent
 {
 public:
     Valve();
-    Valve(QString, QString);
+    Valve(QString, QString,QString);
     void emergencyStop(void);
     void endEmergencyStop(void);
     void paint(QPainter*);
@@ -28,6 +28,7 @@ private:
 
     QPixmap openImg;
     QPixmap closedImg;
+    QPixmap alarmImg;
 };
 
 #endif // VALVE_H
