@@ -9,6 +9,8 @@
 #include "simulation.h"
 #include "interface.h"
 
+using namespace std;
+
 class BlackBox : public QObject
 {
     Q_OBJECT
@@ -18,10 +20,25 @@ public:
 private:
     Side goingTo;
     State upGate,downGate,upValve,downValve;
-    bool emergency,isOperating;
+    bool emergency;
     void upOpen();
     void downOpen();
     void connection(Interface * i,Simulation * s);
+    void emitLightSignal(Side,State);
+    State gateState(Side);
+    State valveState(Side);
+
+    //mutex and conflict variable
+    mutex mtx;
+    enum {
+        NONE,
+        VERIFYGATE,
+        CLOSINGGATE,
+        VERIFYVALVE,
+        WAITINGWATER,
+        OPENGATE
+    } operation;
+    Side operationSide;
 
 signals:
     //to simulation
@@ -43,6 +60,8 @@ signals:
     void downGateUpdate(State,int);
     void downValveUpdate(State);
     void downLightUpdate(State);
+
+    void OpenGateInternalSignal();
 
 public slots:
     //from simulation
@@ -76,6 +95,8 @@ public slots:
         void downRedLight();
 
         void endEmergencyButton();
+
+    void OpenGateInternal();
 
 };
 
