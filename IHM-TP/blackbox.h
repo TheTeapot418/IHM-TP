@@ -27,6 +27,7 @@ private:
     void emitLightSignal(Side,State);
     State gateState(Side);
     State valveState(Side);
+    Interface * interface;
 
     //mutex and conflict variable
     mutex mtx;
@@ -69,32 +70,34 @@ public slots:
     void gateState(Side,State,int); //int pour la progression
 
     //from interface
+    void login();
+    void logout();
     void emergencyButton();
+    void endEmergencyButton();
 
-        //automatic mode
-        void switchMode(int);
-        void enter();
-        void exit();
+    //automatic mode
+    void switchMode(int);
+    void enter();
+    void exit();
 
 
-            //manual mode
-        void upGateOpen();
-        void upGateClose();
-        void upGateStop();
-        void upValveOpen();
-        void upValveClose();
-        void upGreenLight();
-        void upRedLight();
+    //manual mode
+    void upGateOpen();
+    void upGateClose();
+    void upGateStop();
+    void upValveOpen();
+    void upValveClose();
+    void upGreenLight();
+    void upRedLight();
 
-        void downGateOpen();
-        void downGateClose();
-        void downGateStop();
-        void downValveOpen();
-        void downValveClose();
-        void downGreenLight();
-        void downRedLight();
+    void downGateOpen();
+    void downGateClose();
+    void downGateStop();
+    void downValveOpen();
+    void downValveClose();
+    void downGreenLight();
+    void downRedLight();
 
-        void endEmergencyButton();
 
     void OpenGateInternal();
 

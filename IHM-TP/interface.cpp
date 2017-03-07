@@ -3,9 +3,6 @@
 
 #include "interface.h"
 #include "ui_interface.h"
-#include <iostream>
-#include <QInputDialog>
-using namespace std;
 
 Interface::Interface(QWidget *parent) :
     QMainWindow(parent),
@@ -145,24 +142,4 @@ void Interface::downLightUpdate(State st){
     }
 }
 
-void Interface::login(){
-    QString txt = QInputDialog::getText(this,"Password ?","Mot de passe ?",QLineEdit::Password);
-    if(txt == "password"){
-        ui->manualWidget->setVisible(true);
-        ui->logoutButton->setVisible(true);
-        ui->stopEmergencyButton->setVisible(true);
-
-        ui->automaticWidget->setVisible(false);
-        ui->loginButton->setVisible(false);
-    }
-}
-
-void Interface::logout(){
-    ui->manualWidget->setVisible(false);
-    ui->logoutButton->setVisible(false);
-    ui->stopEmergencyButton->setVisible(false);
-
-    ui->automaticWidget->setVisible(true);
-    ui->loginButton->setVisible(true);
-}
 

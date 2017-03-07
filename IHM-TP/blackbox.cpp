@@ -5,7 +5,9 @@
 #include "ui_interface.h"
 
 #include <iostream>
-#include <unistd.h>
+
+#include <QInputDialog>
+
 using namespace std;
 
 BlackBox::BlackBox(Interface * i,Simulation * s,QObject *parent) : QObject(parent) {
@@ -15,6 +17,7 @@ BlackBox::BlackBox(Interface * i,Simulation * s,QObject *parent) : QObject(paren
     operation = NONE;
     goingTo = UPSTREAM;
     connection(i,s);
+    interface = i;
 }
 
 void BlackBox::connection(Interface * i,Simulation * s){
@@ -42,8 +45,8 @@ void BlackBox::connection(Interface * i,Simulation * s){
 
     connect(i->getUi()->emergencyButton,SIGNAL(clicked()),this,SLOT(emergencyButton()));
     connect(i->getUi()->stopEmergencyButton,SIGNAL(clicked()),this,SLOT(endEmergencyButton()));
-    connect(i->getUi()->loginButton,SIGNAL(clicked()),i,SLOT(login()));
-    connect(i->getUi()->logoutButton,SIGNAL(clicked()),i,SLOT(logout()));
+    connect(i->getUi()->loginButton,SIGNAL(clicked()),this,SLOT(login()));
+    connect(i->getUi()->logoutButton,SIGNAL(clicked()),this,SLOT(logout()));
 
     connect(this,SIGNAL(upGateUpdate(State,int)),i,SLOT(upGateUpdate(State,int)));
     connect(this,SIGNAL(upValveUpdate(State)),i,SLOT(upValveUpdate(State)));
@@ -119,6 +122,31 @@ void BlackBox::gateState(Side v,State s,int i){
 
 
 //from interface
+void BlackBox::login(){
+    QString txt = QInputDialog::getText(interface,"Password ?","Mot de passe ?",QLineEdit::Password);
+    if(txt == "password"){
+        interface->getUi()->manualWidget->setVisible(true);
+        interface->getUi()->logoutButton->setVisible(true);
+        interface->getUi()->stopEmergencyButton->setVisible(true);
+
+        interface->getUi()->automaticWidget->setVisible(false);
+        interface->getUi()->loginButton->setVisible(false);
+
+        mtx.lock();
+        operation = NONE;
+        mtx.unlock();
+    }
+}
+
+void BlackBox::logout(){
+    interface->getUi()->manualWidget->setVisible(false);
+    interface->getUi()->logoutButton->setVisible(false);
+    interface->getUi()->stopEmergencyButton->setVisible(false);
+
+    interface->getUi()->automaticWidget->setVisible(true);
+    interface->getUi()->loginButton->setVisible(true);
+}
+
 void BlackBox::emergencyButton(){
     if(emergency)return;
     emit emergencyStop();
@@ -129,6 +157,13 @@ void BlackBox::emergencyButton(){
         operation = NONE;
     mtx.unlock();
 }
+
+void BlackBox::endEmergencyButton(){
+    if(!emergency)return;
+    emit endEmergencyStop();
+    emergency = false;
+}
+
 
 
 //automatic mode
@@ -178,7 +213,7 @@ void BlackBox::OpenGateInternal(){
         case CLOSINGGATE :
             if(gateState(OTHER(operationSide)) != CLOSED){
                 emit setRedLight(OTHER(operationSide));
-                emitLightSignal(OTHER(operationSide),OPEN);
+                emitLightSignal(OTHER(operationSide),CLOSED);
                 emit closeGate(OTHER(operationSide));
                 break;
             }
@@ -322,8 +357,3 @@ void BlackBox::downRedLight(){
 }
 
 
-void BlackBox::endEmergencyButton(){
-    if(!emergency)return;
-    emit endEmergencyStop();
-    emergency = false;
-}
