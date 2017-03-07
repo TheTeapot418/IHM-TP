@@ -70,7 +70,7 @@ void BlackBox::connection(Interface * i,Simulation * s){
     connect(s,SIGNAL(gateState(Side,State,int)),this,SLOT(gateState(Side,State,int)));
     connect(s,SIGNAL(waterLevel(Level)),this,SLOT(waterLevel(Level)));
 
-    connect(this,SIGNAL(OpenGateInternalSignal()),this,SLOT(OpenGateInternal()),Qt::QueuedConnection);
+    connect(this,SIGNAL(openGateInternalSignal()),this,SLOT(openGateInternal()),Qt::QueuedConnection);
 }
 
 ////////////////////
@@ -97,7 +97,7 @@ void BlackBox::gateState(Side v,State s,int i){
             s = OPEN;
             mtx.lock();
             if(operation == OPENGATE)
-                emit OpenGateInternalSignal();
+                emit openGateInternalSignal();
             mtx.unlock();
 
         }
@@ -105,7 +105,7 @@ void BlackBox::gateState(Side v,State s,int i){
             s = CLOSED;
             mtx.lock();
             if(operation == CLOSINGGATE)
-                emit OpenGateInternalSignal();
+                emit openGateInternalSignal();
             mtx.unlock();
         }
     }
@@ -122,7 +122,13 @@ void BlackBox::gateState(Side v,State s,int i){
 }
 
 void BlackBox::waterLevel(Level lvl){
-
+    if(lvl == HIGH || lvl == LOW){
+        mtx.lock();
+        if(operation == WAITINGWATER)
+            emit openGateInternalSignal();
+        mtx.unlock();
+    }
+    water = lvl;
 }
 
 
@@ -202,7 +208,8 @@ State BlackBox::valveState(Side s){
 }
 
 #define OTHER(X) X==UPSTREAM?DOWNSTREAM:UPSTREAM
-void BlackBox::OpenGateInternal(){
+#define SIDELEVEL(X) X==UPSTREAM?HIGH:LOW
+void BlackBox::openGateInternal(){
     if(emergency)return;
     mtx.lock();
     switch(operation){
@@ -224,12 +231,16 @@ void BlackBox::OpenGateInternal(){
             }
             operation = VERIFYVALVE;
         case VERIFYVALVE :
-            if(valveState(OTHER(operationSide)) == OPEN)
-                    emit closeValve(OTHER(operationSide));
-            if(valveState(operationSide) == CLOSED)
-                    emit openValve(operationSide);
+            if(water != SIDELEVEL(operationSide)){
+                if(valveState(OTHER(operationSide)) == OPEN)
+                        emit closeValve(OTHER(operationSide));
+                if(valveState(operationSide) == CLOSED)
+                        emit openValve(operationSide);
+            }
             operation = WAITINGWATER;
         case WAITINGWATER :
+            if(water != SIDELEVEL(operationSide))
+                break;
             operation = OPENGATE;
         case OPENGATE :
             if(gateState(operationSide) != OPEN){
@@ -254,7 +265,7 @@ void BlackBox::enter(){
             operationSide = DOWNSTREAM;
         else
             operationSide = UPSTREAM;
-        emit OpenGateInternalSignal();
+        emit openGateInternalSignal();
     }
     mtx.unlock();
 }
@@ -265,7 +276,7 @@ void BlackBox::exit(){
     if(operation == NONE){
         operation = VERIFYGATE;
         operationSide = goingTo;
-        emit OpenGateInternalSignal();
+        emit openGateInternalSignal();
     }
     mtx.unlock();
 }
@@ -274,7 +285,7 @@ void BlackBox::exit(){
 //manual mode
 void BlackBox::upGateOpen(){
     if(emergency)return;
-    if((upGate == CLOSED || upGate == STOPPED) && upValve == OPEN && downValve == CLOSED)
+    if((upGate == CLOSED || upGate == STOPPED) && water == HIGH)
         emit openGate(UPSTREAM);
 }
 
@@ -319,7 +330,7 @@ void BlackBox::upRedLight(){
 
 void BlackBox::downGateOpen(){
     if(emergency)return;
-    if((downGate == CLOSED || downGate == STOPPED) && upValve == CLOSED && downValve == OPEN)
+    if((downGate == CLOSED || downGate == STOPPED) && water == LOW)
         emit openGate(DOWNSTREAM);
 }
 

@@ -51,23 +51,20 @@ void Water::calculVitesse(){
 void Water::run(){
     calculVitesse();
     mtx.lock();
+
     position += vitesse;
     if(position <= 0)
         position = 0;
     else if(position >= positionMax)
         position = positionMax;
-    //cout << "position : "+position << endl;
-    switch(position){
-        case 0 :
-            level = HIGH;
-            break;
-        case 448 :
-            level = LOW;
-            break;
-        default :
-            level = MID;
-            break;
-    }
+
+    if(position == 0)
+        level = HIGH;
+    else if(position == positionMax)
+        level = LOW;
+    else
+        level = MID;
+
     mtx.unlock();
     emit waterLevelInternal(level);
     std::this_thread::sleep_for(std::chrono::milliseconds(100));

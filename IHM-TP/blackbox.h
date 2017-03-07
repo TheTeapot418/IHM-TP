@@ -20,6 +20,7 @@ public:
 private:
     Side goingTo;
     State upGate,downGate,upValve,downValve;
+    Level water;
     bool emergency;
     void upOpen();
     void downOpen();
@@ -62,7 +63,7 @@ signals:
     void downValveUpdate(State);
     void downLightUpdate(State);
 
-    void OpenGateInternalSignal();
+    void openGateInternalSignal();
 
 public slots:
     //from simulation
@@ -100,7 +101,7 @@ public slots:
     void downRedLight();
 
 
-    void OpenGateInternal();
+    void openGateInternal();
 
 };
 
