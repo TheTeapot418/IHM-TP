@@ -26,6 +26,10 @@ Ui::Interface * Interface::getUi(){
     return ui;
 }
 
+void Interface::closeEvent(QCloseEvent *event) {
+    QApplication::quit();
+}
+
 void Interface::upGateUpdate(State st,int i){
     switch(st){
         case OPEN :

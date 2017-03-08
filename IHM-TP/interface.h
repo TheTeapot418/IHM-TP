@@ -20,6 +20,8 @@ public:
     ~Interface();
     Ui::Interface *getUi();
 
+    void closeEvent(QCloseEvent*);
+
 private:
     Ui::Interface *ui;
 
