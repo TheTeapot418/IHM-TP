@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <ctime>
+#include <iostream>
 #include <random>
 #include "gate.h"
 #include "enums.h"
@@ -29,6 +30,7 @@ void Gate::emergencyStop() {
 
 void Gate::endEmergencyStop() {
     if (!emergency) return;
+    std::cout << "END" << std::endl;
     emergency = false;
     state = STOPPED;
 }
@@ -86,6 +88,7 @@ void Gate::threadFunc(State target) {
     if (target == OPEN) {
         for(; preciseState <= 100; preciseState += 1) {
             if (randomFailure()) {
+                threadRunning = false;
                 emergencyStop();
                 return;
             }
@@ -103,6 +106,7 @@ void Gate::threadFunc(State target) {
     } else if (target == CLOSED) {
         for(; preciseState >= 0; preciseState -= 1) {
             if (randomFailure()) {
+                threadRunning = false;
                 emergencyStop();
                 return;
             }
