@@ -10,12 +10,13 @@ Water::Water(){
     upValve = downValve = OPEN;
     vitesse = 0;
     thread = std::thread(&Water::run,this);
-    thread.detach();
 }
 
 Water::~Water(){
     std::lock_guard<std::mutex> lock(mtx2);
     shouldDie = true;
+    mtx2.unlock();
+    thread.join();
 }
 
 void Water::paint(QPainter* p) {

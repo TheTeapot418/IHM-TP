@@ -6,7 +6,7 @@
 
 SimulationWindow::SimulationWindow(std::vector<Paintable*> e) : QWidget(0), entities(e)
 {
-    //setWindowFlags(Qt::WindowTitleHint);
+    setWindowFlags(Qt::WindowTitleHint);
     setFixedSize(1000, 600);
     setWindowTitle("Simulation");
     move(50, 50);
