@@ -13,7 +13,10 @@ Water::Water(){
     thread.detach();
 }
 
-//Water::~Water(){}
+Water::~Water(){
+    std::lock_guard<std::mutex> lock(mtx2);
+    shouldDie = true;
+}
 
 void Water::paint(QPainter* p) {
     p->drawPixmap(0, position,img);
@@ -49,24 +52,29 @@ void Water::calculVitesse(){
 }
 
 void Water::run(){
-    calculVitesse();
-    mtx.lock();
+    while(true) {
+        std::lock_guard<std::mutex> lock(mtx2);
+        if (shouldDie) return;
+        mtx2.unlock();
 
-    position += vitesse;
-    if(position <= 0)
-        position = 0;
-    else if(position >= positionMax)
-        position = positionMax;
+        calculVitesse();
+        mtx.lock();
 
-    if(position == 0)
-        level = HIGH;
-    else if(position == positionMax)
-        level = LOW;
-    else
-        level = MID;
+        position += vitesse;
+        if(position <= 0)
+            position = 0;
+        else if(position >= positionMax)
+            position = positionMax;
 
-    mtx.unlock();
-    emit waterLevelInternal(level);
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-    run();
+        if(position == 0)
+            level = HIGH;
+        else if(position == positionMax)
+            level = LOW;
+        else
+            level = MID;
+
+        mtx.unlock();
+        emit waterLevelInternal(level);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 }

@@ -17,6 +17,7 @@ class Water : public QObject,public Paintable
 public:
     //explicit Water(QObject *parent = 0);
     Water();
+    ~Water();
     void paint(QPainter*);
     void updateValve(Side,State);
 
@@ -31,9 +32,10 @@ private:
     int position = 104;
     Level level = MID;
 
-    std::mutex mtx;
+    std::mutex mtx, mtx2;
     State upValve,downValve;
     int vitesse;
+    bool shouldDie = false;
     void calculVitesse();
 
     std::thread thread;
