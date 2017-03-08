@@ -13,6 +13,8 @@
 
 #include "background.h"
 
+#include <iostream>
+
 Simulation::Simulation()
 {
 
@@ -47,7 +49,6 @@ Simulation::Simulation()
 
 Simulation::~Simulation() {
     //window->~SimulationWindow();
-    delete window;
     delete usGate;
     delete dsGate;
 }

@@ -17,7 +17,6 @@ class Water : public QObject,public Paintable
 public:
     //explicit Water(QObject *parent = 0);
     Water();
-    ~Water();
     void paint(QPainter*);
     void updateValve(Side,State);
 
@@ -39,6 +38,7 @@ private:
     void calculVitesse();
 
     std::thread thread;
+    bool isRunning;
     void run();
 };
 
