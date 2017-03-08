@@ -133,7 +133,7 @@ void Gate::threadFunc(State target) {
 
 
 double Gate::rand_double() {
-    static thread_local std::mt19937 generator;
+    static thread_local std::mt19937 generator(std::time(NULL));
         std::uniform_real_distribution<double> distribution(0,1);
         return distribution(generator);
 }
