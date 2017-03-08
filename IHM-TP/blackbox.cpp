@@ -170,7 +170,6 @@ void BlackBox::emergencyButton(){
 }
 
 void BlackBox::endEmergencyButton(){
-    if(!emergency)return;
     emit endEmergencyStop();
     emergency = false;
 }
