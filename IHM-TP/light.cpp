@@ -1,3 +1,5 @@
+//BAUER Guillaume
+//HANSER Florian
 #include <QPainter>
 #include <QPixmap>
 #include <QString>
@@ -8,17 +10,27 @@ Light::Light()
 
 }
 
+//Le constructeur charge les ressources à rendre dans la fenêtre
 Light::Light(QString ri, QString gi) {
     redImg = QPixmap(ri);
     greenImg = QPixmap(gi);
 }
 
+//Mise en état d'alerte du feu
+//En état d'alerte, le feu passe au rouge
 void Light::emergencyStop(void) {
     if (emergency) return;
     color = RED;
     emergency = true;
 }
 
+//Fin de l'état d'alerte
+void Light::endEmergencyStop(void) {
+    if (!emergency) return;
+    emergency = false;
+}
+
+//Rendu dans la fenêtre
 void Light::paint(QPainter* p) {
     switch (color) {
     case RED:
@@ -30,11 +42,7 @@ void Light::paint(QPainter* p) {
     }
 }
 
-void Light::endEmergencyStop(void) {
-    if (!emergency) return;
-    emergency = false;
-}
-
+//Setters
 void Light::setToRed(void) {
     if (emergency) return;
     color = RED;

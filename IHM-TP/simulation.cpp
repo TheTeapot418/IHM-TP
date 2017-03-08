@@ -15,9 +15,11 @@
 
 #include <iostream>
 
+//Clase principale de la simulation
 Simulation::Simulation()
 {
 
+    //Instanciation des différents coposants de l'écluse
     usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png", ":/images/US_Valve_Alarm.png");
     dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png", ":/images/DS_Valve_Alarm.png");
 
@@ -27,6 +29,7 @@ Simulation::Simulation()
     usGate = new Gate(":/images/US_Gate.png",":/images/US_Gate_Alarm.png");
     dsGate = new Gate(":/images/DS_Gate.png",":/images/DS_Gate_Alarm.png");
 
+    //Création du tableau de composants
     components.push_back(&usValve);
     components.push_back(&dsValve);
     components.push_back(usGate);
@@ -34,30 +37,36 @@ Simulation::Simulation()
     components.push_back(&usLight);
     components.push_back(&dsLight);
 
+    //Connexions internes à la simulation
     connect(usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
     connect(dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
     connect(&water,SIGNAL(waterLevelInternal(Level)),this,SLOT(waterLevelInternal(Level)));
 
+    //Tableau d'éléments à rendre dans la fenêtre
     std::vector<Paintable*> p;
     p.push_back(&water);
     p.push_back(&background);
     p.insert(p.end(), components.begin(), components.end());
 
+    //Création de la fenêtre
     window = new SimulationWindow(p);
     window->show();
 }
 
+//Destructeur : on fait le ménage
 Simulation::~Simulation() {
-    //window->~SimulationWindow();
     delete usGate;
     delete dsGate;
 }
 
+//Arrêt d'urgence
 void Simulation::emergencyStop() {
+    //Déclenche l'arrêt d'urgence de tous les composants
     for (SluiceComponent* c : components) {
         c->emergencyStop();
     }
 
+    //Signalement des nouveaux états à l'interface
     emit gateState(UPSTREAM, usGate->getState(), usGate->getPreciseState());
     emit gateState(DOWNSTREAM, dsGate->getState(), dsGate->getPreciseState());
     emit valveState(UPSTREAM, usValve.getState());
@@ -65,9 +74,12 @@ void Simulation::emergencyStop() {
     water.updateValve(UPSTREAM,ALERT);
     water.updateValve(DOWNSTREAM,ALERT);
 
+    //Mise à jour de la fenêtre
     requestWindowUpdate();
 }
 
+//Fin de l'état d'alerte
+//Même chose qu'au dessus
 void Simulation::endEmergencyStop() {
     for (SluiceComponent* c : components) {
         c->endEmergencyStop();
@@ -81,9 +93,11 @@ void Simulation::endEmergencyStop() {
     requestWindowUpdate();
 }
 
+//Ouverture d'une vanne
 void Simulation::openValve(Side v) {
     State s;
 
+    //Ouverture de la valve correspondant à v
     switch (v) {
     case UPSTREAM:
         usValve.open();
@@ -94,11 +108,16 @@ void Simulation::openValve(Side v) {
         s = dsValve.getState();
     }
 
+    //signalement du changement d'état de la vanne
     emit(valveState(v, s));
     water.updateValve(v,s);
+
+    //Mise à jour de la fenêtre
     requestWindowUpdate();
 }
 
+//Fermeture d'une vanne
+//Même chose qu'au dessus
 void Simulation::closeValve(Side v) {
     State s;
 
@@ -117,7 +136,9 @@ void Simulation::closeValve(Side v) {
     requestWindowUpdate();
 }
 
+//Ouverture d'une porte
 void Simulation::openGate(Side g) {
+    //Ouverture de la porte correspondant à g
     switch(g) {
     case UPSTREAM:
         usGate->open();
@@ -125,9 +146,13 @@ void Simulation::openGate(Side g) {
     case DOWNSTREAM:
         dsGate->open();
     }
+
+    //Mise à jour de la fenêtre
     requestWindowUpdate();
 }
 
+//fermeture d'une porte
+//Même chose qu'au dessus
 void Simulation::closeGate(Side g) {
     switch(g) {
     case UPSTREAM:
@@ -139,6 +164,8 @@ void Simulation::closeGate(Side g) {
     requestWindowUpdate();
 }
 
+//Arrêt d'une porte
+//Toujours la même chose
 void Simulation::stopGate(Side g) {
     switch(g) {
     case UPSTREAM:
@@ -150,6 +177,8 @@ void Simulation::stopGate(Side g) {
     requestWindowUpdate();
 }
 
+//Commande de feu
+//Passe le feu correspondant à l au rouge
 void Simulation::setRedLight(Side l) {
     switch (l) {
     case UPSTREAM:
@@ -158,9 +187,13 @@ void Simulation::setRedLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToRed();
     }
+
+    //Mise à jour de la fenêtre
     requestWindowUpdate();
 }
 
+//Commande de feu
+//Passe le feu correspondant à l au vert
 void Simulation::setGreenLight(Side l) {
     switch (l) {
     case UPSTREAM:
@@ -169,9 +202,14 @@ void Simulation::setGreenLight(Side l) {
     case DOWNSTREAM:
         dsLight.setToGreen();
     }
+
+    //Mise à jour de la fenêtre
     requestWindowUpdate();
 }
 
+
+//Slots internes à la simulation
+//Mise à jour de l'état d'es portes
 void Simulation::usGateStateInternal(State state, int ps) {
     emit gateState(UPSTREAM, state, ps);
     requestWindowUpdate();
@@ -182,11 +220,13 @@ void Simulation::dsGateStateInternal(State state, int ps) {
     requestWindowUpdate();
 }
 
+//Etat de l'eau
 void Simulation::waterLevelInternal(Level lvl){
     emit waterLevel(lvl);
     requestWindowUpdate();
 }
 
+//Mise à jour de la fenêtre
 void Simulation::requestWindowUpdate() {
     window->repaint();
 }

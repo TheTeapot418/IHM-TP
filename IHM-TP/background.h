@@ -1,3 +1,5 @@
+//BAUER Guillaume
+//HANSER Florian
 #ifndef BACKGROUND_H
 #define BACKGROUND_H
 
@@ -6,6 +8,7 @@
 #include "paintable.h"
 
 
+//Arrière plan de la simulation
 class Background : public Paintable
 {
 public:

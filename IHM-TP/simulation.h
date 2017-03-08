@@ -16,7 +16,7 @@
 #include "background.h"
 #include "water.h"
 
-
+//Classe principale de la simulation
 class Simulation : public QObject
 {
     Q_OBJECT
@@ -26,8 +26,10 @@ public:
     ~Simulation();
 
 private:
+    //Fenêtre de la simulation
     SimulationWindow* window;
 
+    //Elements de l'écluse
     Valve usValve;
     Valve dsValve;
     Gate* usGate;
@@ -35,19 +37,24 @@ private:
     Light usLight;
     Light dsLight;
 
+    //elements graphiques
     Background background;
     Water water;
 
+    //Vecteur d'éléments des écluses
     std::vector<SluiceComponent*> components;
 
+    //Déclenche un repaint de la fenêtre de simulation
     void requestWindowUpdate(void);
 
 signals:
+    //Signaux envoyés à l'interface
     void valveState(Side,State);
     void gateState(Side,State,int);
     void waterLevel(Level);
 
 public slots:
+    //Signaux reçus de l'interface
     void emergencyStop();
     void endEmergencyStop();
     void openValve(Side);
@@ -58,6 +65,7 @@ public slots:
     void setRedLight(Side);
     void setGreenLight(Side);
 
+    //Signaux reçus des éléments de l'écluse
     void usGateStateInternal(State, int);
     void dsGateStateInternal(State, int);
     void waterLevelInternal(Level);
