@@ -19,7 +19,7 @@ signals:
 
 public:
     Gate();
-    Gate(QString);
+    Gate(QString,QString);
 
     void emergencyStop(void);
     void endEmergencyStop(void);
@@ -47,6 +47,7 @@ private:
     std::mutex mtx2;
 
     QPixmap img;
+    QPixmap imgAlarm;
 
     int seed;
     double rand_double(void);

@@ -10,9 +10,10 @@ Valve::Valve()
 
 }
 
-Valve::Valve(QString oi, QString ci) {
+Valve::Valve(QString oi, QString ci,QString ai) {
     openImg = QPixmap(oi);
     closedImg = QPixmap(ci);
+    alarmImg = QPixmap(ai);
 }
 
 void Valve::emergencyStop(void) {
@@ -34,8 +35,13 @@ void Valve::paint(QPainter* p) {
         break;
     case CLOSED:
         p->drawPixmap(0, 0, closedImg);
-    default:
+        break;
+    case ALERT :
         p->drawPixmap(0, 0, closedImg);
+        p->drawPixmap(0, 0, alarmImg);
+        break;
+    default:
+        break;
     }
 }
 
