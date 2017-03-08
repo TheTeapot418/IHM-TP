@@ -13,7 +13,7 @@ protected:
     double rand_double(void);
     bool randomFailure(void);
 
-    double failureProbability = .1;
+    double failureProbability = .01;
 };
 
 #endif // SLUICECOMPONENT_H
