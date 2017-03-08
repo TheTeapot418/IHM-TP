@@ -16,5 +16,6 @@
         <file>images/US_Valve_Open.png</file>
         <file>images/US_Valve_Alarm.png</file>
         <file>images/WaterLevel.png</file>
+        <file>images/option.png</file>
     </qresource>
 </RCC>

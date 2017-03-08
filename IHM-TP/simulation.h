@@ -69,6 +69,9 @@ public slots:
     void usGateStateInternal(State, int);
     void dsGateStateInternal(State, int);
     void waterLevelInternal(Level);
+
+    //Signal du bouton d'option
+    void optionClicked();
 };
 
 #endif // SIMULATION_H

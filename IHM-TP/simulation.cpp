@@ -14,6 +14,10 @@
 #include "background.h"
 
 #include <iostream>
+#include <QPushButton>
+#include <QIcon>
+#include <QString>
+#include <QInputDialog>
 
 //Clase principale de la simulation
 Simulation::Simulation()
@@ -48,8 +52,16 @@ Simulation::Simulation()
     p.push_back(&background);
     p.insert(p.end(), components.begin(), components.end());
 
+
     //Création de la fenêtre
     window = new SimulationWindow(p);
+
+    //Création du bouton de config
+    QPushButton * optBt = new QPushButton(QIcon(":/images/option.png"),QString(""),window);
+    optBt->setFixedSize(20,20);
+    optBt->move(980,0);
+    connect(optBt,SIGNAL(clicked()),this,SLOT(optionClicked()));
+
     window->show();
 }
 
@@ -231,4 +243,15 @@ void Simulation::requestWindowUpdate() {
     window->repaint();
 }
 
+//Change les options
+void Simulation::optionClicked(){
+    bool ok;
+    double val = QInputDialog::getDouble(window,"Option","Probabilité de panne :",usGate->getFP(),0,1,3,&ok);
+    if(ok){
+        usGate->setFP(val);
+        dsGate->setFP(val);
+        usValve.setFP(val);
+        dsValve.setFP(val);
+    }
 
+}
