@@ -5,7 +5,7 @@
 
 #include <QPainter>
 #include <QPixmap>
-#include <Qstring>
+#include <QString>
 #include <thread>
 #include <mutex>
 

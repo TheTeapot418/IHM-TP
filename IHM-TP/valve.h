@@ -4,7 +4,7 @@
 //HANSER Florian
 #include <QPainter>
 #include <QPixmap>
-#include <Qstring>
+#include <QString>
 #include <string>
 #include "sluicecomponent.h"
 #include "enums.h"
