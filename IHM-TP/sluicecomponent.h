@@ -6,6 +6,7 @@
 class SluiceComponent : public Paintable
 {
 public:
+    SluiceComponent();
     virtual void emergencyStop(void) = 0;
     virtual void endEmergencyStop(void) = 0;
 
