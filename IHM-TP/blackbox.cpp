@@ -4,8 +4,6 @@
 #include "blackbox.h"
 #include "ui_interface.h"
 
-#include <iostream>
-
 #include <QInputDialog>
 
 using namespace std;

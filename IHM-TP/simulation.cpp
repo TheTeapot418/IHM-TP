@@ -2,7 +2,6 @@
 //BAUER Guillaume
 
 #include <vector>
-#include <iostream>
 #include "simulation.h"
 #include "enums.h"
 #include "simulationwindow.h"
@@ -188,7 +187,6 @@ void Simulation::waterLevelInternal(Level lvl){
 }
 
 void Simulation::requestWindowUpdate() {
-    std::cout << "Repaint" << std::endl;
     window->repaint();
 }
 
