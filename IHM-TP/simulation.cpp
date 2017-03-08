@@ -47,8 +47,7 @@ Simulation::Simulation()
 }
 
 Simulation::~Simulation() {
-    window->~SimulationWindow();
-    water.~Water();
+    //window->~SimulationWindow();
     delete window;
     delete usGate;
     delete dsGate;
