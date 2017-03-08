@@ -3,6 +3,8 @@
 #include <QString>
 #include <thread>
 #include <chrono>
+#include <ctime>
+#include <random>
 #include "gate.h"
 #include "enums.h"
 
@@ -13,6 +15,7 @@ Gate::Gate()
 
 Gate::Gate(QString gi) {
     img = QPixmap(gi);
+    seed = std::time(NULL);
 }
 
 void Gate::emergencyStop() {
@@ -126,4 +129,16 @@ void Gate::threadFunc(State target) {
     mtx.lock();
     threadRunning = false;
     mtx.unlock();
+}
+
+
+double Gate::rand_double() {
+    static thread_local std::mt19937 generator;
+        std::uniform_real_distribution<double> distribution(0,1);
+        return distribution(generator);
+}
+
+bool Gate::randomFailure() {
+    double rnd = rand_double();
+    return (rnd <= failureProbability);
 }

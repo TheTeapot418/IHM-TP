@@ -47,6 +47,10 @@ private:
     std::mutex mtx2;
 
     QPixmap img;
+
+    int seed;
+    double rand_double(void);
+    bool randomFailure(void);
 };
 
 #endif // GATE_H
