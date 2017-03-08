@@ -106,6 +106,7 @@ void Gate::threadFunc(State target) {
             if (randomFailure()) {
                 threadRunning = false;
                 emergencyStop();
+                emit gateStateInternal(state, preciseState);
                 return;
             }
             //Signalement de l'état de la porte
@@ -118,6 +119,7 @@ void Gate::threadFunc(State target) {
                 mtx.lock();
                 threadRunning = false;
                 mtx.unlock();
+                emit gateStateInternal(state, preciseState);
                 return;
             }
             mtx2.unlock();
@@ -129,6 +131,7 @@ void Gate::threadFunc(State target) {
             if (randomFailure()) {
                 threadRunning = false;
                 emergencyStop();
+                emit gateStateInternal(state, preciseState);
                 return;
             }
             //Signalement de l'état de la porte
@@ -141,6 +144,7 @@ void Gate::threadFunc(State target) {
                 mtx.lock();
                 threadRunning = false;
                 mtx.unlock();
+                emit gateStateInternal(state, preciseState);
                 return;
             }
             mtx2.unlock();
