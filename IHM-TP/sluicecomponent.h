@@ -14,12 +14,16 @@ public:
     virtual void emergencyStop(void) = 0;
     virtual void endEmergencyStop(void) = 0;
 
+    //Getteur et seteur de failureProbability
+    static double getFP();
+    static void setFP(double);
+
 protected:
     //Fonctions de génrération d'erreur aléatoire
     double rand_double(void);
     bool randomFailure(void);
 
-    double failureProbability = .001;
+    static double failureProbability = .001;
 };
 
 #endif // SLUICECOMPONENT_H

@@ -18,3 +18,10 @@ bool SluiceComponent::randomFailure() {
     double rnd = rand_double();
     return (rnd <= failureProbability);
 }
+
+double SluiceComponent::getFP(){
+    return failureProbability;
+}
+void SluiceComponent::setFP(double fp){
+    failureProbability = fp;
+}
