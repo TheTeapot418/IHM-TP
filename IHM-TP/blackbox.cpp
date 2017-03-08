@@ -8,19 +8,16 @@
 
 using namespace std;
 
+//Constructeur qui appelle
 BlackBox::BlackBox(Interface * i,Simulation * s,QObject *parent) : QObject(parent) {
-    upGate = downGate = CLOSED;
-    upValve = downValve = OPEN;
-    emergency = false;
-    operation = NONE;
-    goingTo = UPSTREAM;
     connection(i,s);
     interface = i;
 }
 
+//Fonction qui fait tout les connect entre la blackbox, l'interface et la simulation
 void BlackBox::connection(Interface * i,Simulation * s){
 
-    //Connects between BlackBox and Interface
+    //Connexion entre la BlackBox et l'Interface
     connect(i->getUi()->enterButton,SIGNAL(clicked()),this,SLOT(enter()));
     connect(i->getUi()->exitButton,SIGNAL(clicked()),this,SLOT(exit()));
     connect(i->getUi()->switchMode,SIGNAL(sliderMoved(int)),this,SLOT(switchMode(int)));
@@ -32,7 +29,6 @@ void BlackBox::connection(Interface * i,Simulation * s){
     connect(i->getUi()->upCloseValveButton,SIGNAL(clicked()),this,SLOT(upValveClose()));
     connect(i->getUi()->upGreenLightButton,SIGNAL(clicked()),this,SLOT(upGreenLight()));
     connect(i->getUi()->upRedLightButton,SIGNAL(clicked()),this,SLOT(upRedLight()));
-
     connect(i->getUi()->downOpenGateButton,SIGNAL(clicked()),this,SLOT(downGateOpen()));
     connect(i->getUi()->downCloseGateButton,SIGNAL(clicked()),this,SLOT(downGateClose()));
     connect(i->getUi()->downStopGateButton,SIGNAL(clicked()),this,SLOT(downGateStop()));
@@ -52,8 +48,9 @@ void BlackBox::connection(Interface * i,Simulation * s){
     connect(this,SIGNAL(downGateUpdate(State,int)),i,SLOT(downGateUpdate(State,int)));
     connect(this,SIGNAL(downValveUpdate(State)),i,SLOT(downValveUpdate(State)));
     connect(this,SIGNAL(downLightUpdate(State)),i,SLOT(downLightUpdate(State)));
+//-------------------------
 
-    //Connects between BlackBox and Simulation
+    //Connexion entre la BlackBox et la Simulation
     connect(this,SIGNAL(emergencyStop()),s,SLOT(emergencyStop()));
     connect(this,SIGNAL(endEmergencyStop()),s,SLOT(endEmergencyStop()));
     connect(this,SIGNAL(openValve(Side)),s,SLOT(openValve(Side)));
@@ -67,7 +64,9 @@ void BlackBox::connection(Interface * i,Simulation * s){
     connect(s,SIGNAL(valveState(Side,State)),this,SLOT(valveState(Side,State)));
     connect(s,SIGNAL(gateState(Side,State,int)),this,SLOT(gateState(Side,State,int)));
     connect(s,SIGNAL(waterLevel(Level)),this,SLOT(waterLevel(Level)));
+//-------------------------
 
+    //Connexion interne
     connect(this,SIGNAL(openGateInternalSignal()),this,SLOT(openGateInternal()),Qt::QueuedConnection);
 }
 
@@ -75,7 +74,7 @@ void BlackBox::connection(Interface * i,Simulation * s){
 //      SLOT      //
 ////////////////////
 
-//from simulation
+//Reçois un signal de la simulation et met à jour l'état de la blackBox
 void BlackBox::valveState(Side v,State s){
     switch(v){
         case UPSTREAM :
@@ -89,6 +88,9 @@ void BlackBox::valveState(Side v,State s){
     }
 }
 
+//Reçois un signal de la simulation et met à jour l'état de la blackBox
+//Si l'operation automatique est dans le mode OPENGATE ou CLOSINGGATE
+//on emet un singal interne pour continuer le mode automatique
 void BlackBox::gateState(Side v,State s,int i){
     if(s != ALERT){
         if(i == 100){
@@ -119,6 +121,9 @@ void BlackBox::gateState(Side v,State s,int i){
     }
 }
 
+//Reçois un signal de la simulation et met à jour l'état de la blackBox
+//Si l'operation automatique est dans le mode WAITINGWATER
+//on emet un singal interne pour continuer le mode automatique
 void BlackBox::waterLevel(Level lvl){
     if(lvl == HIGH || lvl == LOW){
         mtx.lock();
@@ -130,7 +135,8 @@ void BlackBox::waterLevel(Level lvl){
 }
 
 
-//from interface
+//Reçois un singal de l'interface ouvre une fenetre de dialogue
+//Demande le password s'il est correct affiche le layout manuel
 void BlackBox::login(){
     QString txt = QInputDialog::getText(interface,"Password ?","Mot de passe ?",QLineEdit::Password);
     if(txt == "password"){
@@ -141,12 +147,15 @@ void BlackBox::login(){
         interface->getUi()->automaticWidget->setVisible(false);
         interface->getUi()->loginButton->setVisible(false);
 
+        //Arrete une operation automatique en cours
         mtx.lock();
         operation = NONE;
         mtx.unlock();
     }
 }
 
+//Reçois un signal de l'interface
+//affiche le layout automatique
 void BlackBox::logout(){
     interface->getUi()->manualWidget->setVisible(false);
     interface->getUi()->logoutButton->setVisible(false);
@@ -156,6 +165,9 @@ void BlackBox::logout(){
     interface->getUi()->loginButton->setVisible(true);
 }
 
+//Reçois un signal de l'interface et met la blackbox en etat d'urgence
+//emet un signal pour prevenir la simulation et pour etteindre les feu de l'interface
+//Arrete une operation automatique en cours
 void BlackBox::emergencyButton(){
     if(emergency)return;
     emit emergencyStop();
@@ -167,14 +179,14 @@ void BlackBox::emergencyButton(){
     mtx.unlock();
 }
 
+//Reçois un signal de l'interface sors l'interface de l'etat d'urgence
+//Emet un signal pour prevenir la simulation
 void BlackBox::endEmergencyButton(){
     emit endEmergencyStop();
     emergency = false;
 }
 
-
-
-//automatic mode
+//Reçois un signal pour changer la direction
 void BlackBox::switchMode(int i){
     if(i == 0)
         goingTo = UPSTREAM;
@@ -182,6 +194,7 @@ void BlackBox::switchMode(int i){
         goingTo = DOWNSTREAM;
 }
 
+//Fonction qui un emet un signal au feu en fonction du coté où il est
 void BlackBox::emitLightSignal(Side s,State st){
     if(s == UPSTREAM)
         emit upLightUpdate(st);
@@ -189,6 +202,7 @@ void BlackBox::emitLightSignal(Side s,State st){
         emit downLightUpdate(st);
 }
 
+//recupère l'état d'une porte en fonction du coté où elle est
 State BlackBox::gateState(Side s){
     if(s == UPSTREAM)
         return upGate;
@@ -196,6 +210,7 @@ State BlackBox::gateState(Side s){
         return downGate;
 }
 
+//recupère l'état d'une vanne en fonction du coté où elle est
 State BlackBox::valveState(Side s){
     if(s == UPSTREAM)
         return upValve;
@@ -204,8 +219,12 @@ State BlackBox::valveState(Side s){
 
 }
 
+//define qui inverse le coté
 #define OTHER(X) X==UPSTREAM?DOWNSTREAM:UPSTREAM
-//#define SIDELEVEL(X) X==UPSTREAM?HIGH:LOW
+//Fonction qui gère l'automatisation
+//utilise les variable critique "operation" et "operationSide"
+//S'il attend la fermeture/ouverture/mise à niveau la fonction se termine
+//lors de la reception d'un signal la fonction continue
 void BlackBox::openGateInternal(){
     if(emergency)return;
     mtx.lock();
@@ -251,8 +270,9 @@ void BlackBox::openGateInternal(){
     mtx.unlock();
 }
 
-//mutex !!!!!
-
+//Reçois un signal de l'interface
+//met en place les variable critique "operation" et "operationSide"
+//et lance la fonction de traitement authomatique
 void BlackBox::enter(){
     if(emergency)return;
     mtx.lock();
@@ -267,6 +287,9 @@ void BlackBox::enter(){
     mtx.unlock();
 }
 
+//Reçois un signal de l'interface
+//met en place les variable critique "operation" et "operationSide"
+//et lance la fonction de traitement authomatique
 void BlackBox::exit(){
     if(emergency)return;
     mtx.lock();
@@ -279,7 +302,10 @@ void BlackBox::exit(){
 }
 
 
-//manual mode
+//Les prochaine fonction reçoivent un signal
+//verifie que la blackBox n'est pas en état d'urgence
+//verifie si les condition d'ouverture/fermeture sont reunis
+//envoie un signal à la simulation si c'est le cas
 void BlackBox::upGateOpen(){
     if(emergency)return;
     if((upGate == CLOSED || upGate == STOPPED) && water == HIGH)

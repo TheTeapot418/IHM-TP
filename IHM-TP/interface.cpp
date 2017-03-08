@@ -4,6 +4,8 @@
 #include "interface.h"
 #include "ui_interface.h"
 
+//Le constructeur va charger l'ui
+//rendre invisible les Widget manuel
 Interface::Interface(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::Interface)
@@ -22,14 +24,20 @@ Interface::~Interface()
     delete ui;
 }
 
+//Getteur de l'ui
 Ui::Interface * Interface::getUi(){
     return ui;
 }
 
+
+//Fonction qui ferme l'application à l'appui de bouton de fermeture
 void Interface::closeEvent(QCloseEvent *event) {
     QApplication::quit();
 }
 
+
+//Slot qui update les valeurs(couleurs , avancement)
+//Traite tout les cas de STATE et change la couleur affiché
 void Interface::upGateUpdate(State st,int i){
     switch(st){
         case OPEN :

@@ -11,6 +11,7 @@
 
 using namespace std;
 
+//La BlackBox permet la communication entre la simulation et l'interface
 class BlackBox : public QObject
 {
     Q_OBJECT
@@ -18,19 +19,21 @@ public:
     explicit BlackBox(Interface * i,Simulation * s,QObject *parent = 0);
 
 private:
-    Side goingTo;
-    State upGate,downGate,upValve,downValve;
-    Level water;
-    bool emergency;
-    void upOpen();
-    void downOpen();
+    //Attributs
+    Side goingTo = UPSTREAM;
+    State upGate = CLOSED,downGate = CLOSED;
+    State upValve = OPEN,downValve = OPEN;
+    Level water = MID;
+    bool emergency = false;
+
+    //Methodes
     void connection(Interface * i,Simulation * s);
     void emitLightSignal(Side,State);
     State gateState(Side);
     State valveState(Side);
     Interface * interface;
 
-    //mutex and conflict variable
+    //Exclusion mutuelle
     mutex mtx;
     enum {
         NONE,
@@ -39,11 +42,11 @@ private:
         VERIFYVALVE,
         WAITINGWATER,
         OPENGATE
-    } operation;
+    } operation = NONE;    //Etats de l'operation manuelle en cours
     Side operationSide;
 
 signals:
-    //to simulation
+    //Signaux émis à la simulation
     void emergencyStop();
     void endEmergencyStop();
     void openValve(Side);
@@ -54,53 +57,49 @@ signals:
     void setRedLight(Side);
     void setGreenLight(Side);
 
-    //to interface
+    //Signaux émis à l'interface
     void upGateUpdate(State,int);
     void upValveUpdate(State);
     void upLightUpdate(State);
-
     void downGateUpdate(State,int);
     void downValveUpdate(State);
     void downLightUpdate(State);
 
+    //Signals interne
     void openGateInternalSignal();
 
 public slots:
-    //from simulation
+    //Signaux reçus de la simulation
     void valveState(Side,State);
-    void gateState(Side,State,int); //int pour la progression
+    void gateState(Side,State,int);
     void waterLevel(Level);
 
-    //from interface
+    //Signaux reçus de l'interface
     void login();
     void logout();
     void emergencyButton();
     void endEmergencyButton();
+        //mode manuelle
+        void switchMode(int);
+        void enter();
+        void exit();
+        //mode automatique
+        void upGateOpen();
+        void upGateClose();
+        void upGateStop();
+        void upValveOpen();
+        void upValveClose();
+        void upGreenLight();
+        void upRedLight();
+        void downGateOpen();
+        void downGateClose();
+        void downGateStop();
+        void downValveOpen();
+        void downValveClose();
+        void downGreenLight();
+        void downRedLight();
 
-    //automatic mode
-    void switchMode(int);
-    void enter();
-    void exit();
-
-
-    //manual mode
-    void upGateOpen();
-    void upGateClose();
-    void upGateStop();
-    void upValveOpen();
-    void upValveClose();
-    void upGreenLight();
-    void upRedLight();
-
-    void downGateOpen();
-    void downGateClose();
-    void downGateStop();
-    void downValveOpen();
-    void downValveClose();
-    void downGreenLight();
-    void downRedLight();
-
-
+    //Slot interne
     void openGateInternal();
 
 };

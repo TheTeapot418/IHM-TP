@@ -1,7 +1,8 @@
-#ifndef VALVE_H
-#define VALVE_H
 //BAUER Guillaume
 //HANSER Florian
+#ifndef VALVE_H
+#define VALVE_H
+
 #include <QPainter>
 #include <QPixmap>
 #include <QString>

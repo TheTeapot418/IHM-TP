@@ -1,18 +1,24 @@
+//HANSER Florian
+//BAUER Guillaume
+
 #include "water.h"
 #include "enums.h"
 
 using namespace std;
 
+//Le constructeur charge la ressource
 Water::Water(){
     img = QPixmap(":/images/WaterLevel.png");
-    upValve = downValve = OPEN;
-    vitesse = 0;
 }
 
+//Rendu de l'eau dans la fenêtre
 void Water::paint(QPainter* p) {
     p->drawPixmap(0, position,img);
 }
 
+//Setteur des états des vannes
+//Si ALERT -> CLOSED
+//Lance le thread de calcul de position s'il n'est pas déjà lancé
 void Water::updateValve(Side s,State st) {
     mtx.lock();
     if(s == UPSTREAM)
@@ -29,6 +35,8 @@ void Water::updateValve(Side s,State st) {
     mtx2.unlock();
 }
 
+//Calcul de la vitesse
+// 0 si aucun mouvement à faire
 #define MIN(A,B) A<B?A:B
 #define ISNEG(X) X<0?0:X
 void Water::calculVitesse(){
@@ -56,6 +64,10 @@ void Water::calculVitesse(){
     mtx.unlock();
 }
 
+//Fonction du thread
+//calcul la vitesse + niveau
+//emet un signal à simulation de changement de position
+//recommence après 100ms
 void Water::run(){
     while(true) {
 
