@@ -36,7 +36,7 @@ private:
     Light dsLight;
 
     Background background;
-    Water* water;
+    Water water;
 
     std::vector<SluiceComponent*> components;
 

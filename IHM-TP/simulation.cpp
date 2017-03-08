@@ -25,7 +25,6 @@ Simulation::Simulation()
 
     usGate = new Gate(":/images/US_Gate.png");
     dsGate = new Gate(":/images/DS_Gate.png");
-    water = new Water();
 
     components.push_back(&usValve);
     components.push_back(&dsValve);
@@ -36,10 +35,10 @@ Simulation::Simulation()
 
     connect(usGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(usGateStateInternal(State,int)));
     connect(dsGate, SIGNAL(gateStateInternal(State,int)), this, SLOT(dsGateStateInternal(State,int)));
-    connect(water,SIGNAL(waterLevelInternal(Level)),this,SLOT(waterLevelInternal(Level)));
+    connect(&water,SIGNAL(waterLevelInternal(Level)),this,SLOT(waterLevelInternal(Level)));
 
     std::vector<Paintable*> p;
-    p.push_back(water);
+    p.push_back(&water);
     p.push_back(&background);
     p.insert(p.end(), components.begin(), components.end());
 
@@ -63,8 +62,8 @@ void Simulation::emergencyStop() {
     emit gateState(DOWNSTREAM, dsGate->getState(), dsGate->getPreciseState());
     emit valveState(UPSTREAM, usValve.getState());
     emit valveState(DOWNSTREAM, dsValve.getState());
-    water->updateValve(UPSTREAM,ALERT);
-    water->updateValve(DOWNSTREAM,ALERT);
+    water.updateValve(UPSTREAM,ALERT);
+    water.updateValve(DOWNSTREAM,ALERT);
 
     requestWindowUpdate();
 }
@@ -96,7 +95,7 @@ void Simulation::openValve(Side v) {
     }
 
     emit(valveState(v, s));
-    water->updateValve(v,s);
+    water.updateValve(v,s);
     requestWindowUpdate();
 }
 
@@ -114,7 +113,7 @@ void Simulation::closeValve(Side v) {
     }
 
     emit(valveState(v, s));
-    water->updateValve(v,s);
+    water.updateValve(v,s);
     requestWindowUpdate();
 }
 
