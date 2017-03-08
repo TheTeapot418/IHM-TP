@@ -79,6 +79,10 @@ void Gate::threadFunc(State target) {
 
     if (target == OPEN) {
         for(; preciseState <= 100; preciseState += 1) {
+            if (randomFailure()) {
+                emergencyStop();
+                return;
+            }
             emit gateStateInternal(state, preciseState);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             std::lock_guard<std::mutex> lock(mtx2);
@@ -92,6 +96,10 @@ void Gate::threadFunc(State target) {
         }
     } else if (target == CLOSED) {
         for(; preciseState >= 0; preciseState -= 1) {
+            if (randomFailure()) {
+                emergencyStop();
+                return;
+            }
             emit gateStateInternal(state, preciseState);
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
             std::lock_guard<std::mutex> lock(mtx2);

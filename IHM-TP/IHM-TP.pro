@@ -35,7 +35,8 @@ SOURCES += main.cpp\
     gate.cpp \
     light.cpp \
     background.cpp \
-    water.cpp
+    water.cpp \
+    sluicecomponent.cpp
 
 HEADERS  += blackbox.h \
     enums.h \

@@ -41,11 +41,19 @@ void Valve::paint(QPainter* p) {
 
 void Valve::open(void) {
     if (emergency) return;
+    if (randomFailure()) {
+        emergencyStop();
+        return;
+    }
     state = OPEN;
 }
 
 void Valve::close(void) {
     if (emergency) return;
+    if (randomFailure()) {
+        emergencyStop();
+        return;
+    }
     state = CLOSED;
 }
 

@@ -6,6 +6,7 @@
 #include "simulation.h"
 #include "enums.h"
 #include <QApplication>
+#include <ctime>
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,8 @@ int main(int argc, char *argv[])
     qRegisterMetaType<Level>("Level");
     Simulation s;
     BlackBox bb(&i,&s);
+    std::srand(std::time(NULL));
+
     i.show();
 
     qRegisterMetaType<State>("State");
