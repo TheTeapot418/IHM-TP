@@ -8,7 +8,7 @@ using namespace std;
 
 //Le constructeur charge la ressource
 Water::Water(){
-    img = QPixmap(":/images/WaterLevel.png");
+    img = QPixmap(":/resources/WaterLevel.png");
 }
 
 //Rendu de l'eau dans la fenêtre
