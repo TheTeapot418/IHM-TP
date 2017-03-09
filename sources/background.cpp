@@ -6,7 +6,7 @@
 //Le constructeur charge l'image à rendre
 Background::Background()
 {
-    img = QPixmap(":/images/Background.png");
+    img = QPixmap(":/resources/Background.png");
 }
 
 //Rendu de l'image dans la fenêtre

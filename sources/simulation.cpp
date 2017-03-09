@@ -24,14 +24,14 @@ Simulation::Simulation()
 {
 
     //Instanciation des différents coposants de l'écluse
-    usValve = Valve(":/images/US_Valve_Open.png", ":/images/US_Valve_Closed.png", ":/images/US_Valve_Alarm.png");
-    dsValve = Valve(":/images/DS_Valve_Open.png", ":/images/DS_Valve_Closed.png", ":/images/DS_Valve_Alarm.png");
+    usValve = Valve(":/resources/US_Valve_Open.png", ":/resources/US_Valve_Closed.png", ":/resources/US_Valve_Alarm.png");
+    dsValve = Valve(":/images/DS_Valve_Open.png", ":/resources/DS_Valve_Closed.png", ":/resources/DS_Valve_Alarm.png");
 
-    usLight = Light(":/images/US_Light_Red.png", ":/images/US_Light_Green.png");
-    dsLight = Light(":/images/DS_Light_Red.png", ":/images/DS_Light_Green.png");
+    usLight = Light(":/resources/US_Light_Red.png", ":/resources/US_Light_Green.png");
+    dsLight = Light(":/resources/DS_Light_Red.png", ":/resources/DS_Light_Green.png");
 
-    usGate = new Gate(":/images/US_Gate.png",":/images/US_Gate_Alarm.png");
-    dsGate = new Gate(":/images/DS_Gate.png",":/images/DS_Gate_Alarm.png");
+    usGate = new Gate(":/resources/US_Gate.png",":/resources/US_Gate_Alarm.png");
+    dsGate = new Gate(":/resources/DS_Gate.png",":/resources/DS_Gate_Alarm.png");
 
     //Création du tableau de composants
     components.push_back(&usValve);
@@ -57,9 +57,10 @@ Simulation::Simulation()
     window = new SimulationWindow(p);
 
     //Création du bouton de config
-    QPushButton * optBt = new QPushButton(QIcon(":/images/option.png"),QString(""),window);
+    QPushButton * optBt = new QPushButton(QIcon(":/resources/option.png"),QString(""),window);
     optBt->setFixedSize(50,50);
-    optBt->move(940,10);
+    optBt->move(950,0);
+    optBt->setStyleSheet("background-color:transparent;");
     connect(optBt,SIGNAL(clicked()),this,SLOT(optionClicked()));
 
     window->show();
