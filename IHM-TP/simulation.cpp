@@ -58,8 +58,8 @@ Simulation::Simulation()
 
     //Création du bouton de config
     QPushButton * optBt = new QPushButton(QIcon(":/images/option.png"),QString(""),window);
-    optBt->setFixedSize(20,20);
-    optBt->move(980,0);
+    optBt->setFixedSize(50,50);
+    optBt->move(940,10);
     connect(optBt,SIGNAL(clicked()),this,SLOT(optionClicked()));
 
     window->show();
