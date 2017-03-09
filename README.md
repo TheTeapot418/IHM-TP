@@ -1,4 +1,5 @@
-# IHM-TP
-Projet d'IHM sur les écluses
+# IHM - TP Noté
+BAUER Guillaume
+HANSER Florian
 
-J'en avais marre de l'encart Github qui demandait d'ajouter un Readme alors voilà.
+Le mot de passe du mode avancé est "password"
