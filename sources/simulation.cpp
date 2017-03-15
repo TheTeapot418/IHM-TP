@@ -25,7 +25,7 @@ Simulation::Simulation()
 
     //Instanciation des différents coposants de l'écluse
     usValve = Valve(":/resources/US_Valve_Open.png", ":/resources/US_Valve_Closed.png", ":/resources/US_Valve_Alarm.png");
-    dsValve = Valve(":/images/DS_Valve_Open.png", ":/resources/DS_Valve_Closed.png", ":/resources/DS_Valve_Alarm.png");
+    dsValve = Valve(":/resources/DS_Valve_Open.png", ":/resources/DS_Valve_Closed.png", ":/resources/DS_Valve_Alarm.png");
 
     usLight = Light(":/resources/US_Light_Red.png", ":/resources/US_Light_Green.png");
     dsLight = Light(":/resources/DS_Light_Red.png", ":/resources/DS_Light_Green.png");
